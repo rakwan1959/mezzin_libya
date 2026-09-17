@@ -28,6 +28,9 @@ jobs:
     name: Build iOS IPA
     runs-on: macos-15
     timeout-minutes: 90
+    # صلاحية الكتابة ضرورية لرفع سجلات الفشل إلى فرع ci-logs
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout
@@ -49,26 +52,26 @@ jobs:
         working-directory: ios
         run: |
           set -o pipefail
-          pod --version || brew install cocoapods
+          if ! command -v pod >/dev/null 2>&1; then
+            echo "CocoaPods not found — installing via brew..."
+            brew install cocoapods 2>&1 | tee pod_brew.log
+          fi
+          echo "CocoaPods version: $(pod --version)"
           pod install --repo-update 2>&1 | tee pod_install.log
 
-      # بناء بدون توقيع: التوقيع مطلوب فقط لـ App Store/TestFlight،
-      # أما IPA غير الموقّع فيصلح لـ AltStore / Sideloadly / TrollStore.
       - name: Build iOS app (unsigned)
         run: |
           set -o pipefail
           flutter build ios --release --no-codesign --build-number ${{ github.run_number }} 2>&1 | tee flutter_build.log
-
       # عند أي فشل: يُرفَع سجل الخطأ إلى فرع ci-logs ليُقرأ علناً (repo عام).
       - name: Upload CI logs for debugging
         if: failure()
-        working-directory: ios
         run: |
           git config user.name "ci-logs"
           git config user.email "ci-logs@users.noreply.github.com"
           git checkout --orphan ci-logs
           git rm -rf --cached . >/dev/null 2>&1 || true
-          git add -f pod_install.log flutter_build.log 2>/dev/null || true
+          git add -f ios/pod_brew.log ios/pod_install.log flutter_build.log 2>/dev/null || true
           if git diff --cached --quiet; then echo "no logs to publish"; exit 0; fi
           git commit -m "ci: failure logs from run ${{ github.run_number }}"
           git push -f origin ci-logs
