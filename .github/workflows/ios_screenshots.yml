@@ -1,0 +1,200 @@
+name: iOS Screenshots (App Store)
+
+# لقطات شاشة جاهزة لصفحة App Store — تُلتقط من التطبيق نفسه على محاكي macOS.
+#
+# كيف يعمل:
+#   1. يختار أحدث محاكي متاح من قائمة مرشّحين (لا يعتمد على اسم محاكي ثابت).
+#   2. يمنح صلاحية الموقع مسبقاً حتى لا يظهر حوار النظام على اللقطات.
+#   3. يشغّل integration_test/app_store_screenshots_test.dart عبر flutter drive،
+#      فيتنقّل الاختبار في تبويبات التطبيق ويلتقط لقطة لكل شاشة.
+#   4. يتحقق من مقاسات الصور مقابل مقاسات App Store المطلوبة ويرفعها كأرتيفاكت.
+#
+# المقاسات المطلوبة (Apple): iPhone 6.9" = 1320×2868 أو 1290×2796،
+#                            iPad 13"   = 2064×2752 أو 2048×2732.
+
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'أي جهاز: both / iphone / ipad'
+        required: false
+        default: 'both'
+      bundle_id:
+        description: 'معرّف الحزمة المستخدم في منح صلاحية الموقع'
+        required: false
+        default: 'com.example.muezzinLibyaApp'
+  push:
+    paths:
+      - '.github/workflows/ios_screenshots.yml'
+      - 'integration_test/**'
+      - 'test_driver/**'
+
+jobs:
+  screenshots:
+    name: Screenshots — ${{ matrix.label }}
+    runs-on: macos-15
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      matrix:
+        # إن كان التطبيق للآيفون فقط، احذف عنصر ipad-13 من هذه القائمة.
+        include:
+          - label: iphone-6.9
+            candidates: 'iPhone 17 Pro Max|iPhone 16 Pro Max|iPhone 16 Plus|iPhone 15 Pro Max|iPhone 15 Plus|iPhone 14 Plus'
+            expected: '1320x2868 1290x2796'
+          - label: ipad-13
+            candidates: 'iPad Pro 13-inch|iPad Pro 12.9-inch (6th generation)|iPad Pro (12.9-inch) (6th generation)'
+            expected: '2064x2752 2048x2732'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Skip (not requested)
+        id: gate
+        run: |
+          ONLY="${{ inputs.only || 'both' }}"
+          case "${{ matrix.label }}" in
+            iphone-*) WANTED="iphone";;
+            ipad-*)   WANTED="ipad";;
+            *)        WANTED="both";;
+          esac
+          if [ "$ONLY" = "both" ] || [ "$ONLY" = "$WANTED" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "ℹ️ تم تخطّي ${{ matrix.label }} (المطلوب: $ONLY)"
+          fi
+
+      - name: Setup Flutter
+        if: steps.gate.outputs.run == 'true'
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.41.9
+          cache: true
+
+      - name: Get dependencies
+        if: steps.gate.outputs.run == 'true'
+        run: flutter pub get
+
+      - name: Pick newest available simulator
+        if: steps.gate.outputs.run == 'true'
+        id: sim
+        run: |
+          set -o pipefail
+          echo "── المحاكيات المتاحة ──"
+          xcrun simctl list devices available | sed -n '1,60p'
+          python3 - "${{ matrix.candidates }}" <<'PY' >> "$GITHUB_OUTPUT"
+          import json, subprocess, sys
+
+          wanted = [c.strip() for c in sys.argv[1].split('|') if c.strip()]
+          data = json.loads(
+              subprocess.check_output(['xcrun', 'simctl', 'list', 'devices', 'available', '--json'],
+                                      text=True)
+          )['devices']
+
+          def ios_version(runtime):
+              # com.apple.CoreSimulator.SimRuntime.iOS-18-5 → [18, 5]
+              tag = runtime.rsplit('.', 1)[-1]
+              if not tag.startswith('iOS-'):
+                  return None
+              try:
+                  return [int(p) for p in tag[4:].split('-') if p.isdigit()]
+              except ValueError:
+                  return None
+
+          best = None
+          for name in wanted:
+              for runtime, devices in data.items():
+                  version = ios_version(runtime)
+                  if version is None:
+                      continue
+                  for device in devices:
+                      if name.lower() not in device['name'].lower():
+                          continue
+                      key = (version, device['name'])
+                      if best is None or key > best[0]:
+                          best = (key, device, runtime)
+              if best is not None:
+                  break  # أعلى مرشّح متوفّر يكفي
+
+          if best is None:
+              sys.exit('❌ لم يُعثر على أي محاكي من: ' + ', '.join(wanted))
+
+          _, device, runtime = best
+          print(f"udid={device['udid']}")
+          print(f"name={device['name']}")
+          print(f"runtime={runtime.rsplit('.', 1)[-1]}")
+          PY
+          echo "تم اختيار: ${{ steps.sim.outputs.name }}"
+
+      - name: Prepare simulator
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          set -o pipefail
+          UDID="${{ steps.sim.outputs.udid }}"
+          xcrun simctl boot "$UDID" || true
+          xcrun simctl bootstatus "$UDID" -b
+          # شريط حالة نظيف كما في لقطات Apple المعتادة (تجميلي فقط).
+          xcrun simctl status_bar "$UDID" override \
+            --time "9:41" --batteryState charged --batteryLevel 100 \
+            --wifiBars 3 --cellularBars 4 || true
+          # صلاحية الموقع مسبقاً: حوار النظام كان سيغطّي لقطة شاشة القبلة.
+          BUNDLE_ID="${{ inputs.bundle_id || 'com.example.muezzinLibyaApp' }}"
+          xcrun simctl privacy "$UDID" grant location-always "$BUNDLE_ID" || true
+          xcrun simctl privacy "$UDID" grant photos "$BUNDLE_ID" || true
+
+      - name: Capture screenshots
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          set -o pipefail
+          flutter drive \
+            --driver=test_driver/screenshot_driver.dart \
+            --target=integration_test/app_store_screenshots_test.dart \
+            -d "${{ steps.sim.outputs.udid }}" 2>&1 | tee screenshots_drive.log
+          echo "── الملفات الملتقطة ──"
+          ls -la screenshots/ || true
+
+      - name: Verify screenshot sizes
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python3 - "screenshots" "${{ matrix.expected }}" <<'PY'
+          import os, struct, sys
+
+          folder, expected = sys.argv[1], set(sys.argv[2].split())
+          files = sorted(f for f in os.listdir(folder) if f.endswith('.png')) if os.path.isdir(folder) else []
+          if not files:
+              sys.exit('❌ لم تُلتقط أي لقطة شاشة')
+          print(f'عدد اللقطات: {len(files)}')
+          bad = []
+          for name in files:
+              with open(os.path.join(folder, name), 'rb') as fh:
+                  head = fh.read(24)
+              width, height = struct.unpack('>II', head[16:24])
+              size = f'{width}x{height}'
+              ok = size in expected or f'{height}x{width}' in expected
+              print(('  ✅ ' if ok else '  ⚠️ ') + f'{name}: {size}')
+              if not ok:
+                  bad.append(f'{name} ({size})')
+          if bad:
+              print('⚠️ مقاسات غير مطابقة للمتطلبات: ' + ', '.join(bad))
+              print('   المطلوب: ' + ', '.join(sorted(expected)))
+          PY
+
+      - name: Upload screenshots
+        if: always() && steps.gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: appstore-screenshots-${{ matrix.label }}-${{ github.run_number }}
+          path: screenshots/
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Upload drive log
+        if: always() && steps.gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-log-${{ matrix.label }}-${{ github.run_number }}
+          path: screenshots_drive.log
+          if-no-files-found: ignore
+          retention-days: 7

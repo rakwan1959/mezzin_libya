@@ -1,11 +1,13 @@
 name: Build iOS
 
 # بناء تطبيق iOS (IPA) من الكود المصدري على macOS السحابي.
-# يعمل يدوياً من تبويب Actions، وعند كل دفع لمجلدات الكود الأساسية.
 #
-# ملاحظة التوقيع: المخرج هنا IPA **غير موقّع** (صالح للتثبيت عبر AltStore/Sideloadly
-# أو للتشغيل على المحاكي). للتوقيع الكامل راجع docs/BUILD_IOS.md
-# (يحتاج Apple Developer Account وشهادات في GitHub Secrets).
+# ثلاث مراحل (jobs):
+#   1. preflight — يفحص وجود أسرار توقيع Apple (وجودها يفعّل المرحلة الثالثة).
+#   2. build     — ينتج IPA **غير موقّع** (AltStore / Sideloadly / TrollStore).
+#   3. sign      — ينتج IPA **موقّعاً** صالحاً للنشر (App Store / TestFlight)،
+#                  ويعمل فقط إذا أضفت الشهادات في GitHub Secrets.
+#                  الخطوات التفصيلية في docs/BUILD_IOS.md ← قسم «التوقيع الكامل».
 
 on:
   workflow_dispatch:
@@ -14,6 +16,10 @@ on:
         description: 'بناء نسخة محاكي إضافية (true/false)'
         required: false
         default: 'false'
+      sign:
+        description: 'التوقيع الكامل (يتطلب أسرار Apple في Secrets)'
+        required: false
+        default: 'true'
   push:
     branches: [main, master]
     paths:
@@ -24,11 +30,36 @@ on:
       - '.github/workflows/build_ios.yml'
 
 jobs:
+  # ────────────────────────────────────────────────────────────────────────
+  # فحص أسرار التوقيع — لا يمكن قراءة confidential في `if` مباشرة، فتُقاس
+  # هنا وتُمرَّر كمخرَج (output) تستهلكه مرحلة التوقيع.
+  # ────────────────────────────────────────────────────────────────────────
+  preflight:
+    name: Check signing secrets
+    runs-on: ubuntu-latest
+    outputs:
+      signing_ready: ${{ steps.check.outputs.ready }}
+    steps:
+      - name: Detect Apple signing secrets
+        id: check
+        env:
+          CERT: ${{ secrets.APPLE_CERTIFICATE_P12 }}
+          CERT_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          if [ -n "$CERT" ] && [ -n "$CERT_PASSWORD" ] && [ -n "$TEAM_ID" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "✅ أسرار توقيع Apple موجودة — ستُنشأ نسخة موقّعة أيضاً."
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "ℹ️ لا توجد أسرار توقيع — سيُبنى IPA غير موقّع فقط."
+          fi
+
   build:
     name: Build iOS IPA
     runs-on: macos-15
     timeout-minutes: 90
-    # صلاحية الكتابة ضرورية لرفع سجلات الفشل إلى فرع ci-logs
+    # صلاحية الكتابة ضرورية لرفع سجلات الفشل إلى فرع ci-logs (عند الفشل فقط).
     permissions:
       contents: write
 
@@ -111,32 +142,187 @@ jobs:
           path: build/ios/iphonesimulator/Runner.app
           retention-days: 14
 
-  # ──────────────────────────────────────────────────────────────────────
-  # التوقيع الكامل (App Store / TestFlight) — فعّل هذا الـ job بعد إضافة
-  # الأسرار المذكورة في docs/BUILD_IOS.md إلى GitHub Secrets.
-  # ──────────────────────────────────────────────────────────────────────
-  # sign:
-  #   name: Sign & Export IPA
-  #   runs-on: macos-15
-  #   needs: build
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: subosito/flutter-action@v2
-  #       with:
-  #         channel: stable
-  #     - run: flutter pub get
-  #     - name: Import signing certificate
-  #       uses: apple-actions/import-codesign-certs@v3
-  #       with:
-  #         p12-file-base64: ${{ secrets.APPLE_CERTIFICATE_P12 }}
-  #         p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-  #     - name: Build & export signed IPA
-  #       run: |
-  #         flutter build ipa --release \
-  #           --export-options-plist=ios/ExportOptions.plist \
-  #           --build-number ${{ github.run_number }}
-  #       # ملاحظة: عدّل ios/ExportOptions.plist (teamID + method) قبل التوقيع.
-  #     - uses: actions/upload-artifact@v4
-  #       with:
-  #         name: muezzin-ios-signed-${{ github.run_number }}
-  #         path: build/ios/ipa/*.ipa
+  # ────────────────────────────────────────────────────────────────────────
+  # التوقيع الكامل (App Store / TestFlight).
+  # يعمل تلقائياً عند وجود الأسرار — ولا يعطّل شيئاً إن لم تكن موجودة.
+  # الإعداد خطوة بخطوة: docs/BUILD_IOS.md ← «التوقيع الكامل».
+  # ────────────────────────────────────────────────────────────────────────
+  sign:
+    name: Sign & Export IPA
+    runs-on: macos-15
+    timeout-minutes: 90
+    needs: [preflight, build]
+    if: >-
+      needs.preflight.outputs.signing_ready == 'true' &&
+      (github.event_name != 'workflow_dispatch' || inputs.sign != 'false')
+    env:
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      APPLE_CERTIFICATE_P12: ${{ secrets.APPLE_CERTIFICATE_P12 }}
+      APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+      KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+      APPLE_BUNDLE_ID: ${{ secrets.APPLE_BUNDLE_ID }}
+      APPLE_PROVISIONING_PROFILE: ${{ secrets.APPLE_PROVISIONING_PROFILE }}
+      APPLE_PROVISIONING_PROFILE_NAME: ${{ secrets.APPLE_PROVISIONING_PROFILE_NAME }}
+      EXPORT_METHOD: ${{ secrets.APPLE_EXPORT_METHOD }}
+      ASC_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+      ASC_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.41.9
+          cache: true
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Ensure CocoaPods
+        run: |
+          set -o pipefail
+          if ! command -v pod >/dev/null 2>&1; then
+            brew install cocoapods 2>&1 | tee pod_brew.log
+          else
+            echo "pod found: $(pod --version)"
+          fi
+
+      - name: Pod install
+        working-directory: ios
+        run: |
+          set -o pipefail
+          pod install --repo-update 2>&1 | tee pod_install.log
+
+      # ── 1) شهادة Apple Distribution في keychain مؤقت داخل الـ runner ──
+      - name: Import Apple Distribution certificate
+        run: |
+          set -o pipefail
+          KEYCHAIN_PASS="${KEYCHAIN_PASSWORD:-ci-temp-keychain}"
+          echo "$APPLE_CERTIFICATE_P12" | base64 --decode > /tmp/distribution.p12
+          security create-keychain -p "$KEYCHAIN_PASS" build.keychain
+          security set-keychain-settings -lut 3600 build.keychain
+          security unlock-keychain -p "$KEYCHAIN_PASS" build.keychain
+          security import /tmp/distribution.p12 -k build.keychain \
+            -P "$APPLE_CERTIFICATE_PASSWORD" \
+            -T /usr/bin/codesign -T /usr/bin/security
+          # بلا هذه الخطوة يطلب macOS تأكيداً تفاعلياً عند استخدام المفتاح
+          security set-key-partition-list -S apple-tool:,apple:,codesign: \
+            -s -k "$KEYCHAIN_PASS" build.keychain > /dev/null
+          security list-keychains -d user -s build.keychain login.keychain-db
+          rm -f /tmp/distribution.p12
+          echo "── الشهادات المتاحة ──"
+          security find-identity -v -p codesigning build.keychain
+
+      # ── 2) ملف التزويد (Provisioning Profile) في مكانه الذي يقرأه Xcode ──
+      - name: Install provisioning profile
+        if: env.APPLE_PROVISIONING_PROFILE != ''
+        run: |
+          set -o pipefail
+          DEST="$HOME/Library/MobileDevice/Provisioning Profiles"
+          mkdir -p "$DEST"
+          echo "$APPLE_PROVISIONING_PROFILE" | base64 --decode > /tmp/ci.mobileprovision
+          security cms -D -i /tmp/ci.mobileprovision > /tmp/ci_profile.plist
+          UUID=$(/usr/libexec/PlistBuddy -c 'Print :UUID' /tmp/ci_profile.plist)
+          NAME=$(/usr/libexec/PlistBuddy -c 'Print :Name' /tmp/ci_profile.plist)
+          # Xcode يبحث عن الملف باسم الـ UUID — لا باسمه الأصلي.
+          cp /tmp/ci.mobileprovision "$DEST/$UUID.mobileprovision"
+          echo "profile: $NAME ($UUID)"
+          rm -f /tmp/ci.mobileprovision
+
+      # ── 3) ضبط معرّف الحزمة وفريق التطوير في مشروع Xcode ──
+      - name: Configure bundle id, team & manual signing
+        run: |
+          set -o pipefail
+          python3 - "$APPLE_BUNDLE_ID" "$APPLE_TEAM_ID" "$APPLE_PROVISIONING_PROFILE_NAME" <<'PY'
+          import sys
+          bundle, team, profile = (sys.argv[1], sys.argv[2], sys.argv[3])
+          path = 'ios/Runner.xcodeproj/project.pbxproj'
+          src = open(path, encoding='utf-8').read()
+          main = 'PRODUCT_BUNDLE_IDENTIFIER = com.example.muezzinLibyaApp;'
+          tests = 'PRODUCT_BUNDLE_IDENTIFIER = com.example.muezzinLibyaApp.RunnerTests;'
+          if main not in src:
+              sys.exit('❌ لم يُعثر على معرّف الحزمة الافتراضي في project.pbxproj')
+          settings = '\n'.join([
+              '\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = %s;' % bundle,
+              '\t\t\t\tDEVELOPMENT_TEAM = %s;' % team,
+              '\t\t\t\tCODE_SIGN_STYLE = Manual;',
+              '\t\t\t\tPROVISIONING_PROFILE_SPECIFIER = "%s";' % profile,
+          ])
+          # يُطبَّق على إعدادات هدف التطبيق فقط (Runner) — هدف الاختبارات لا يُؤرشَف.
+          src = src.replace(main, settings)
+          src = src.replace(tests, 'PRODUCT_BUNDLE_IDENTIFIER = %s.RunnerTests;' % bundle)
+          open(path, 'w', encoding='utf-8').write(src)
+          print('✅ bundle id:', bundle, '| team:', team, '| profile:', profile)
+          PY
+
+      # ── 4) ملف خيارات التصدير (يُولَّد من الأسرار بدل ملف القالب) ──
+      - name: Generate ExportOptions.plist
+        run: |
+          set -o pipefail
+          BUNDLE_ID="${APPLE_BUNDLE_ID:-com.example.muezzinLibyaApp}"
+          METHOD="${EXPORT_METHOD:-app-store-connect}"
+          cat > ios/ExportOptions.ci.plist <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>destination</key>
+            <string>export</string>
+            <key>method</key>
+            <string>${METHOD}</string>
+            <key>teamID</key>
+            <string>${APPLE_TEAM_ID}</string>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>signingCertificate</key>
+            <string>Apple Distribution</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>${BUNDLE_ID}</key>
+              <string>${APPLE_PROVISIONING_PROFILE_NAME}</string>
+            </dict>
+            <key>stripSwiftSymbols</key>
+            <true/>
+            <key>uploadSymbols</key>
+            <true/>
+            <key>uploadBitcode</key>
+            <false/>
+          </dict>
+          </plist>
+          PLIST
+          plutil -lint ios/ExportOptions.ci.plist
+          echo "── ExportOptions.ci.plist ──"
+          cat ios/ExportOptions.ci.plist
+
+      - name: Build signed IPA
+        run: |
+          set -o pipefail
+          flutter build ipa --release \
+            --export-options-plist=ios/ExportOptions.ci.plist \
+            --build-number ${{ github.run_number }} 2>&1 | tee signed_build.log
+          ls -la build/ios/ipa/ || true
+
+      - name: Upload signed IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: muezzin-ios-signed-${{ github.run_number }}
+          path: build/ios/ipa/*.ipa
+          if-no-files-found: error
+          retention-days: 30
+
+      # ── 5) رفع اختياري إلى TestFlight (يحتاج مفتاح App Store Connect API) ──
+      - name: Upload to TestFlight
+        if: env.ASC_KEY_ID != '' && env.ASC_ISSUER_ID != '' && env.ASC_PRIVATE_KEY != ''
+        run: |
+          set -o pipefail
+          mkdir -p ~/private_keys
+          printf '%s' "$ASC_PRIVATE_KEY" > "$HOME/private_keys/AuthKey_${ASC_KEY_ID}.p8"
+          IPA=$(ls build/ios/ipa/*.ipa | head -1)
+          echo "uploading $IPA …"
+          xcrun altool --upload-app --type ios -f "$IPA" \
+            --apiKey "$ASC_KEY_ID" --apiIssuer "$ASC_ISSUER_ID" 2>&1 | tee testflight_upload.log \
+            || echo "⚠️ فشل الرفع إلى TestFlight — نزّل الأرتيفاكت وارفعه يدوياً عبر تطبيق Transporter."
