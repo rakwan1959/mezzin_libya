@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'adhan_audio_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/theme/glass_theme.dart';
+import 'core/config/screenshot_mode.dart';
 
 /// لون التطبيق الرسمي (الذهبي) — يُستخدم لتمييز الإشعارات في شريط النظام
 /// حتى تتطابق هوية الإشعارات مع هوية الواجهة نفسها.
@@ -151,10 +152,12 @@ class NotificationService {
 
     const initSettings = InitializationSettings(
       android: AndroidInitializationSettings('ic_notif_mosque'), // مسجد أبيض نقّي — لا شعار ملوّن
+      // في وضع لقطات الشاشة لا نطلب أي صلاحية: الحوار يظهر قبل runApp فلا
+      // يضغطه أحد على محاكي CI، ويبقى الإقلاع معلّقاً بلا واجهة.
       iOS: DarwinInitializationSettings(
-        requestAlertPermission: true,
-        requestBadgePermission: true,
-        requestSoundPermission: true,
+        requestAlertPermission: !kScreenshotMode,
+        requestBadgePermission: !kScreenshotMode,
+        requestSoundPermission: !kScreenshotMode,
       ),
     );
 

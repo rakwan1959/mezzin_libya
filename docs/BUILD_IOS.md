@@ -217,7 +217,8 @@ iOS → `Release`، وسيبني وينتج IPA (مع توقيع إن أضفت �
 1. Actions → **iOS Screenshots (App Store)** → Run workflow.
    - حقل `only`: `both` (آيفون + آيباد) أو `iphone` أو `ipad`.
 2. يختار أحدث محاكي متاح (iPhone 6.9" و iPad 13")، يمنح صلاحية الموقع مسبقاً،
-   ويشغّل الاختبار `integration_test/app_store_screenshots_test.dart` عبر `flutter drive`.
+   ويشغّل الاختبار `integration_test/app_store_screenshots_test.dart` عبر `flutter drive`
+   مع `--dart-define=SCREENSHOT_MODE=true`.
 3. الاختبار ينتقل بين التبويبات الخمسة (الرئيسية، المكتبة، القبلة، الإعدادات، عن التطبيق)
    ويلتقط لقطة لكل شاشة بأسماء مرتّبة (`01-…` حتى `05-…`).
 4. الأرتيفاكتات: `appstore-screenshots-<device>-<رقم>` (الصور) و`…-log-…` (سجل التحفيز).
@@ -232,9 +233,17 @@ UDID=$(xcrun simctl list devices available | grep -m1 "iPhone 1" | \
 xcrun simctl boot "$UDID" || true
 xcrun simctl privacy "$UDID" grant location-always com.example.muezzinLibyaApp
 flutter drive --driver=test_driver/screenshot_driver.dart \
-  --target=integration_test/app_store_screenshots_test.dart -d "$UDID"
+  --target=integration_test/app_store_screenshots_test.dart \
+  --dart-define=SCREENSHOT_MODE=true -d "$UDID"
 # الصور في مجلد screenshots/
 ```
+
+> **لماذا `SCREENSHOT_MODE`؟** على محاكي CI لا يوجد من يضغط «السماح» في حوار
+> صلاحيات الإشعارات، وهذا الحوار يظهر داخل `NotificationService.init()` **قبل**
+> `runApp` فيبقى الإقلاع معلّقاً ولا تظهر أي واجهة إطلاقاً (يظهر ذلك في سجل
+> الاختبار كخطأ «انتهت المهلة قبل ظهور GlassNavIcon» مع طباعة محتوى الشاشة).
+> العلم يُصفّر طلب صلاحيات iOS في الإقلاع، وقيمته الافتراضية `false` فلا
+> يتأثر التطبيق المنشور.
 
 > ملاحظة تقنية: اللقطات تُرسم من نوافذ التطبيق (`capturePngScreenshot`)، فإن
 > غاب شريط الحالة العلوي في صورة ما فتلك مسألة تجميلية لا ترفضها Apple —

@@ -148,9 +148,12 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: |
           set -o pipefail
+          # SCREENSHOT_MODE يمنع حوار صلاحيات الإشعارات: حوار iOS يظهر قبل
+          # runApp فيبقى الإقلاع معلّقاً بلا واجهة (لا أحد يضغط «السماح» في CI).
           flutter drive \
             --driver=test_driver/screenshot_driver.dart \
             --target=integration_test/app_store_screenshots_test.dart \
+            --dart-define=SCREENSHOT_MODE=true \
             -d "${{ steps.sim.outputs.udid }}" 2>&1 | tee screenshots_drive.log
           echo "── الملفات الملتقطة ──"
           ls -la screenshots/ || true

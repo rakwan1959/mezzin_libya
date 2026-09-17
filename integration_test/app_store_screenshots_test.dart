@@ -31,11 +31,13 @@ void main() {
   testWidgets('جولة لقطات شاشة App Store', (WidgetTester tester) async {
     app.main();
 
-    // شاشة البداية (AppSplashScreen) تبقى 5 ثوانٍ قبل بناء الواجهة الفعلية.
+    // شاشة البداية (AppSplashScreen) تبقى 5 ثوانٍ، ثم يقرأ التطبيق الإعدادات
+    // ويجهّز المواقيت. على محاكي CI (أول تشغيل، أرشيف فكّ ضغطه للتو) قد يطول
+    // الإقلاع، ولذلك مهلة سخية مع تشخيص كامل عند الفشل.
     await _waitFor(
       tester,
       find.byType(GlassNavIcon),
-      const Duration(seconds: 120),
+      const Duration(seconds: 300),
     );
 
     await _shot(tester, binding, '01-home-prayer-times');
@@ -71,7 +73,31 @@ Future<void> _waitFor(
     }
     await _tick(tester, const Duration(milliseconds: 200));
   }
+  _diagnose(tester);
   fail('انتهت المهلة (${timeout.inSeconds}s) قبل ظهور $finder');
+}
+
+/// يطبع ما هو موجود على الشاشة فعلاً — ليظهر سبب الفشل في سجل CI مباشرة
+/// (شاشة تحميل؟ حوار معلّق؟ استثناء قبل بناء الواجهة؟).
+void _diagnose(WidgetTester tester) {
+  final List<Widget> widgets = tester.allWidgets.toList();
+  final List<String> types = widgets
+      .map((Widget w) => w.runtimeType.toString())
+      .toSet()
+      .toList()
+    ..sort();
+  final List<String> texts = widgets
+      .whereType<Text>()
+      .map((Text t) => t.data ?? '')
+      .where((String s) => s.trim().isNotEmpty)
+      .take(20)
+      .toList();
+
+  debugPrint('── تشخيص فشل اللقطات ──');
+  debugPrint('عدد الويدجت في الشجرة: ${widgets.length}');
+  debugPrint('مؤشر تحميل ظاهر؟ ${widgets.any((Widget w) => w is CircularProgressIndicator)}');
+  debugPrint('أنواع الويدجت: ${types.take(60).join(', ')}');
+  debugPrint('النصوص الظاهرة: ${texts.join(' | ')}');
 }
 
 /// ينتظر زمناً حقيقياً مع الاستمرار في تقديم الإطارات.
