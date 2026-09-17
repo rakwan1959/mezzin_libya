@@ -48,15 +48,20 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Install CocoaPods
-        working-directory: ios
+      - name: Ensure CocoaPods
         run: |
           set -o pipefail
           if ! command -v pod >/dev/null 2>&1; then
             echo "CocoaPods not found — installing via brew..."
             brew install cocoapods 2>&1 | tee pod_brew.log
+          else
+            echo "pod found: $(pod --version)"
           fi
-          echo "CocoaPods version: $(pod --version)"
+
+      - name: Pod install
+        working-directory: ios
+        run: |
+          set -o pipefail
           pod install --repo-update 2>&1 | tee pod_install.log
 
       - name: Build iOS app (unsigned)
@@ -71,7 +76,7 @@ jobs:
           git config user.email "ci-logs@users.noreply.github.com"
           git checkout --orphan ci-logs
           git rm -rf --cached . >/dev/null 2>&1 || true
-          git add -f ios/pod_brew.log ios/pod_install.log flutter_build.log 2>/dev/null || true
+          git add -f '*.log' 2>/dev/null || true
           if git diff --cached --quiet; then echo "no logs to publish"; exit 0; fi
           git commit -m "ci: failure logs from run ${{ github.run_number }}"
           git push -f origin ci-logs
