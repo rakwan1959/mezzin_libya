@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#000000</color>
+    <!-- الأسود الفاخر لخلفية شاشة الإقلاع واللوقو لمنع الشاشة البلانك -->
+    <color name="splash_bg">#000000</color>
+    <color name="royal_purple">#240046</color>
+    <color name="royal_purple_light">#7E6BA7</color>
+    <color name="app_bg">#000000</color>
+</resources>

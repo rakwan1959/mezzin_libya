@@ -1,0 +1,148 @@
+name: muezzin_libya_app
+description: "تطبيق أوقات الصلاة - مواقيت الصلاة والأذان في ليبيا"
+publish_to: 'none'
+version: 3.5.0+52
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # UI & UX
+  cupertino_icons: ^1.0.8
+  google_fonts: ^8.1.0
+  flutter_svg: ^2.0.10+1
+  percent_indicator: ^4.2.3
+
+  # Core Functionality
+  geolocator: ^14.0.2
+  adhan: ^2.0.0+1
+  intl: ^0.20.2
+  hijri: ^3.0.0
+  shared_preferences: ^2.5.2
+  flutter_compass: ^0.8.1
+
+  # Audio
+  just_audio: ^0.10.5
+  just_audio_background: ^0.0.1-beta.15
+  audio_session: ^0.1.21
+  audio_video_progress_bar: ^2.0.3
+
+  # Database & Storage
+  sqflite: ^2.4.1
+  path: ^1.9.1
+  path_provider: ^2.1.5
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # State Management & DI
+  flutter_bloc: ^9.1.0
+  equatable: ^2.0.7
+  get_it: ^9.2.1
+  dartz: ^0.10.1
+
+  # Networking
+  dio: ^5.7.0
+  url_launcher: ^6.3.1
+  supabase_flutter: ^2.8.4
+
+  # Notifications
+  # نسخة محلية (vendored) من flutter_local_notifications 22.3.0 الأصلية بلا تعديلات.
+  flutter_local_notifications:
+    path: plugins/flutter_local_notifications
+  timezone: ^0.11.0
+  flutter_timezone: ^5.1.0
+  permission_handler: ^12.0.1
+
+  # Voice & Speech
+  speech_to_text: ^7.3.0
+  flutter_tts: ^4.2.2
+  # System Utilities
+  sound_mode: ^3.1.1
+  video_player: ^2.11.1
+  chewie: ^1.14.1
+  wakelock_plus: ^1.7.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/app_logo_final.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#0A0A1E"
+  adaptive_icon_foreground: "assets/app_logo_final.png"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/audio/
+    - assets/app_logo_final.png
+    - assets/app_logo_clean.png
+    - assets/dr_taha1.jpg
+    - assets/fonts/
+    - assets/quran/
+    - assets/database/Libya/
+    - assets/database/athkar/
+    - assets/database/quran/
+    - assets/database/hadith/
+    - assets/database/cities/
+
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/alfont_com_Cairo-Bold-1.ttf
+    - family: Amiri
+      fonts:
+        - asset: assets/fonts/alfont_com_خط-القران-اميري.ttf
+    - family: Tajawal
+      fonts:
+        - asset: assets/fonts/alfont_com_AlFont_com_Tajawal-Regular.ttf
+    - family: Tahoma
+      fonts:
+        - asset: assets/fonts/Tahoma.ttf
+    - family: QuranUthmanicHafs
+      fonts:
+        - asset: assets/fonts/quran_uthmanic_hafs.otf
+    - family: QuranMe
+      fonts:
+        - asset: assets/fonts/quran_me.ttf
+    - family: QuranAlQalam
+      fonts:
+        - asset: assets/fonts/quran_al_qalam_majeed.ttf
+    - family: QuranAlQalam2
+      fonts:
+        - asset: assets/fonts/quran_al_qalam_2.ttf
+    - family: QuranAlmushaf1
+      fonts:
+        - asset: assets/fonts/quran_almushaf_1.ttf
+    - family: QuranAlKareem
+      fonts:
+        - asset: assets/fonts/quran_al_kareem.ttf
+    - family: QuranAmiri
+      fonts:
+        - asset: assets/fonts/quran_amiri.ttf
+    - family: QuranAmiriRegular
+      fonts:
+        - asset: assets/fonts/quran_amiri_regular.ttf
+    - family: QuranAmiriBold
+      fonts:
+        - asset: assets/fonts/quran_amiri_bold.ttf
+    - family: QuranAmiriSlanted
+      fonts:
+        - asset: assets/fonts/quran_amiri_slanted.ttf
+    - family: QuranTaha
+      fonts:
+        - asset: assets/fonts/quran_taha.ttf
+    - family: QuranNoon
+      fonts:
+        - asset: assets/fonts/quran_noon.ttf

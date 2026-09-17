@@ -1,0 +1,65 @@
+[
+  {
+
+    "title": "Alert not working",
+
+    "subtitle": "• Make sure that alerts are enabled in the system settings as follows: Settings > Apps > Moatheni > Notifications > Enable all options.\n• Make sure that alerts are enabled in the application settings.\n• If they do not work, restart the device.", "isPermission": false,
+    "icon": 0
+  },
+  {
+
+    "title": "Alert works without sound",
+    "subtitle": "• You will not hear the Adhan sound if your phone is on silent mode or Do Not Disturb mode. Please enable the alert during silent mode as follows: App Settings > More > Alert during silent mode.\n• Make sure that the notification volume is increased in the system settings as follows: Settings > Sounds & Vibration > Increase the notification bar level.", "isPermission": false,
+    "icon": 0
+  },
+  {
+
+    "title": "Athan sound is weak",
+    "subtitle": "Make sure that the notification volume is increased in the system settings as follows:\nSettings > Sounds & Vibration > Raise the notification bar.",
+    "isPermission": false,
+    "icon": 0
+  },
+  {
+    "title": "Qibla direction is inaccurate",
+    "subtitle": "• Make sure there are no magnetic objects near your phone.\n• Move your phone in a circular motion in the shape of a number 8.",
+    "isPermission": false,
+    "icon": 0
+  },
+  {
+    "title": "Where can I find the monthly prayer times calendar?",
+    "subtitle": "Tap on Prayer Times in the main app interface.",
+    "isPermission": false,
+    "icon": 0
+  },
+  {
+    "title": "Where can I find the prayer times card?",
+    "subtitle": "To view and share the prayer times card, tap on the share button at the top right of the app's main screen.",
+    "isPermission": false,
+    "icon": 0
+  },
+  {
+    "title": "Add audio from device",
+    "subtitle": "Currently not possible to add sounds from the device that are not in the application.",
+    "isPermission": false,
+    "icon": 0
+  },
+  {
+    "title": "Add prayer widget to the lock screen",
+    "subtitle": "Go to the application settings, then more, then enable the lock screen notification option.",
+    "isPermission": false,
+    "icon": 0
+  },
+  {
+    "title": "Prayer times are inaccurate",
+    "subtitle": "Make sure to choose the correct method for calculating prayer times in the application settings and make sure to adjust the prayer times minutes if needed.",
+    "isPermission": false,
+    "icon": 0
+  },
+  {
+    "title": "Is the application free?",
+    "subtitle": "The application is completely free and without ads and is constantly being developed. We ask Allah to benefit from it and make it a righteous deed accepted purely for His sake.",
+    "isPermission": false,
+    "icon": 0
+  }
+
+]

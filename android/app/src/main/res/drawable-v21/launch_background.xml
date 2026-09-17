@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- الأسود الفاخر — اللون الافتراضي عند فتح التطبيق -->
+    <item android:drawable="@color/splash_bg" />
+    <!-- لوقو التطبيق في المنتصف — يظهر فوراً عند فتح التطبيق دون أي شاشة فارغة -->
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/splash_logo" />
+    </item>
+</layer-list>

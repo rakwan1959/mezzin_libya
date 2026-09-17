@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "soundName": "مشاري راشد العفاسي",
+    "soundFileName": "mashare",
+    "soundUri": "mashare",
+    "isDefault": 1,
+    "soundSize": 0
+  },
+  {
+    "id": 2,
+    "soundName": "ناصر القطامي",
+    "soundFileName": "naser",
+    "soundUri": "naser",
+    "isDefault": 1,
+    "soundSize": 0
+  },
+  {
+    "id": 3,
+    "soundName": "صلاح الذيب",
+    "soundFileName": "salah",
+    "soundUri": "salah",
+    "isDefault": 1,
+    "soundSize": 0
+  },
+  {
+    "id": 4,
+    "soundName": "أذان حجازي",
+    "soundFileName": "hejazi",
+    "soundUri": "hejazi",
+    "isDefault": 1,
+    "soundSize": 0
+  },
+  {
+    "id": 5,
+    "soundName": "محمد الدوكالي",
+    "soundFileName": "dookaly",
+    "soundUri": "dookaly",
+    "isDefault": 1,
+    "soundSize": 0
+  },
+  {
+    "id": 6,
+    "soundName": "تكبير",
+    "soundFileName": "shorttakbeer",
+    "soundUri": "shorttakbeer",
+    "isDefault": 1,
+    "soundSize": 0
+  },
+  {
+    "id": 7,
+    "soundName": "تسبيح",
+    "soundFileName": "tasbeeh",
+    "soundUri": "tasbeeh",
+    "isDefault": 1,
+    "soundSize": 0
+  },
+  {
+    "id": 8,
+    "soundName": "حديث شريف",
+    "soundFileName": "before_adan",
+    "soundUri": "before_adan",
+    "isDefault": 1,
+    "soundSize": 0
+  },
+  {
+    "id": 9,
+    "soundName": "حديث شريف2",
+    "soundFileName": "before_adan2",
+    "soundUri": "before_adan2",
+    "isDefault": 1,
+    "soundSize": 0
+  },
+  {
+    "id": 10,
+    "soundName": "مياه",
+    "soundFileName": "water",
+    "soundUri": "water",
+    "isDefault": 1,
+    "soundSize": 0
+  },
+  {
+    "id": 11,
+    "soundName": "اذان الفجر",
+    "soundFileName": "fajer",
+    "soundUri": "fajer",
+    "isDefault": 1,
+    "soundSize": 0
+  },
+  {
+    "id": 12,
+    "soundName": "إقامة",
+    "soundFileName": "eqama",
+    "soundUri": "eqama",
+    "isDefault": 1,
+    "soundSize": 0
+  }
+]

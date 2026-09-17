@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  خلفية بطاقة الإشعار — مستطيل بزوايا دائرية.
+
+  الأبيض هنا ليس اللون النهائي: البطاقة تُلوَّن في وقت التشغيل بـ
+  `RemoteViews.setInt(R.id.notif_card_bg, "setColorFilter", color)`.
+
+  ⚠️ السبب في استخدام ImageView + setColorFilter بدل setBackgroundColor:
+  ضبط `setBackgroundColor` مباشرة يمسح شكل الـ drawable فتفقد البطاقة
+  زواياها الدائرية. مرشّح اللون (SRC_ATOP) يُلوّن الشكل الأبيض مع الحفاظ
+  على الزوايا والشفافية كما هي.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFFFF" />
+    <corners android:radius="24dp" />
+</shape>

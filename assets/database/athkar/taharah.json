@@ -1,0 +1,88 @@
+
+[
+    {
+    "title" : "إذا دخل الخلاء",
+    "body" : "بِسْمِ الله",
+    "repetition" : "",
+    "narrator" : "الإرواء 50",
+    "reason" : "",
+    "type" : "الطهارة",
+    "favorite" : false,
+    "isQuran" : false,
+    "id" : 500,
+    "key" : ""
+   },
+  {
+    "title" : "",
+    "body" : "أعُوذُ بِالله مِنَ الخُبُثِ والخبَائثِ",
+    "repetition" : "",
+    "narrator" : "صحيح أبي داود 6",
+    "reason" : "",
+    "type" : "الطهارة",
+    "favorite" : false,
+    "isQuran" : false,
+    "id" : 501,
+    "key" : ""
+   },
+  {
+    "title" : "",
+    "body" : "اللهمَّ إني أعوذُ بكَ منَ الخُبثِ والخَبائِثِ",
+    "repetition" : "",
+    "narrator" : "مختصر البخاري 94",
+    "reason" : "",
+    "type" : "الطهارة",
+    "favorite" : false,
+    "isQuran" : false,
+    "id" : 502,
+    "key" : ""
+   },
+  {
+    "title" : "إذا خرج من الخلاء",
+    "body" : "غُفْرَانَكَ",
+    "repetition" : "",
+    "narrator" : "صحيح أبي داود 30",
+    "reason" : "",
+    "type" : "الطهارة",
+    "favorite" : false,
+    "isQuran" : false,
+    "id" : 503,
+    "key" : ""
+   },
+  {
+    "title" : "التسمية على الوضوء",
+    "body" : "بِسْمِ الله",
+    "repetition" : "",
+    "narrator" : "صحيح أبي داود 101",
+    "reason" : "",
+    "type" : "الطهارة",
+    "favorite" : false,
+    "isQuran" : false,
+    "id" : 504,
+    "key" : ""
+   },
+  {
+    "title" : "الذكر بعد الوضوء",
+    "body" : "أَشْهَدُ أنَّهُ لا إلهَ إلا اللهُ وَحْدَهُ لا شَريكَ لَهُ, وأَشْهَدُ أنَّ مُحَمَّداً عَبْدُهُ ورَسُولَهُ اللَّهُمَّ اجْعَلْنِي مِنَ التَّوابينَ وَاجْعَلْني مِنَ المتُطهَّرينَ",
+    "repetition" : "",
+    "narrator" : "الإرواء 96",
+    "reason" : "",
+    "type" : "الطهارة",
+    "favorite" : false,
+    "isQuran" : false,
+    "id" : 505,
+    "key" : ""
+   },
+  {
+    "title" : "",
+    "body" : "سبحانَك اللهمَّ وبحمدك أشهد أن لا إله إلا أنتَ, أستغفرُكَ وأتوبُ إليكَ",
+    "repetition" : "",
+    "narrator" : "الصحيحة 2333",
+    "reason" : "",
+    "type" : "الطهارة",
+    "favorite" : false,
+    "isQuran" : false,
+    "id" : 506,
+    "key" : ""
+   }
+
+ ]

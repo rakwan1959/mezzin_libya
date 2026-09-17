@@ -1,0 +1,699 @@
+{
+  "_metadata": {
+    "source": "مؤذن ليبيا v3.1.3 - APKPure",
+    "extracted_from": "مؤذن+ليبيا_3.1.3_APKPure.apk",
+    "library": "Adhan2 (com.batoulapps.adhan2)",
+    "description": "أوقات الصلاة تُحسب ديناميكياً باستخدام إحداثيات المدينة وطريقة الحساب المحددة",
+    "total_cities": 121,
+    "fajr_special_cities": 50
+  },
+  "_calculation_method": {
+    "default_for_libya": "EGYPTIAN",
+    "available_methods": [
+      "MuslimWorldLeague",
+      "NorthAmerica",
+      "Egyptian",
+      "MakkahUmmAlQura",
+      "Karachi",
+      "Tehran",
+      "Kuwait",
+      "Qatar",
+      "Singapore",
+      "Turkey",
+      "Dubai",
+      "MoonsightingCommittee",
+      "CUSTOM"
+    ],
+    "madhab_options": [
+      "SHAFI",
+      "HANAFI"
+    ],
+    "high_latitude_rule": [
+      "MIDDLE_OF_THE_NIGHT",
+      "SEVENTH_OF_THE_NIGHT",
+      "TWILIGHT_ANGLE"
+    ]
+  },
+  "_fajr_special_list": {
+    "description": "50 مدينة تستخدم حساب الفجر الخاص",
+    "cities": [
+      "abraq",
+      "ainghazala",
+      "alessah",
+      "alqaryat",
+      "baida",
+      "banghazi",
+      "beershahab",
+      "bentbeyah",
+      "braiga",
+      "daraj",
+      "drna",
+      "ejdabia",
+      "ejkhara",
+      "emsaad",
+      "foqaha",
+      "ghaat",
+      "harawa",
+      "hesha",
+      "hoon",
+      "jalo",
+      "kofra",
+      "maradah",
+      "marij",
+      "marsadefna",
+      "mezdah",
+      "morzuk",
+      "nesmah",
+      "ojla",
+      "qaara",
+      "qaserjadi",
+      "qatroun",
+      "qmenes",
+      "qubba",
+      "sabha",
+      "salooq",
+      "shahat",
+      "shqaiqa",
+      "sokna",
+      "tabaqah",
+      "tazerbo",
+      "topruq",
+      "trahgen",
+      "ubari",
+      "umrezam",
+      "wadibawanees",
+      "wadiutba",
+      "wadizamzam",
+      "weddan",
+      "wishka",
+      "zallah"
+    ]
+  },
+  "libya_cities": [
+    {
+      "name": "tripoli",
+      "lat": "32.881317",
+      "lng": "13.192520"
+    },
+    {
+      "name": "banghazi",
+      "lat": "32.101035",
+      "lng": "20.086441"
+    },
+    {
+      "name": "musratah",
+      "lat": "32.372423",
+      "lng": "15.108261"
+    },
+    {
+      "name": "khomes",
+      "lat": "32.634171",
+      "lng": "14.251328"
+    },
+    {
+      "name": "zawia",
+      "lat": "32.749745",
+      "lng": "12.724228"
+    },
+    {
+      "name": "sabha",
+      "lat": "27.134761",
+      "lng": "14.425049"
+    },
+    {
+      "name": "ejdabia",
+      "lat": "30.800833",
+      "lng": "20.190125"
+    },
+    {
+      "name": "siret",
+      "lat": "31.198119",
+      "lng": "16.601028"
+    },
+    {
+      "name": "baida",
+      "lat": "32.765182",
+      "lng": "21.749496"
+    },
+    {
+      "name": "zleatin",
+      "lat": "32.462847",
+      "lng": "14.565811"
+    },
+    {
+      "name": "braiga",
+      "lat": "30.480042",
+      "lng": "19.737625"
+    },
+    {
+      "name": "drna",
+      "lat": "32.761294",
+      "lng": "22.635269"
+    },
+    {
+      "name": "emsaad",
+      "lat": "31.602516",
+      "lng": "25.050888"
+    },
+    {
+      "name": "ghadames",
+      "lat": "30.133333",
+      "lng": "9.500000"
+    },
+    {
+      "name": "hoon",
+      "lat": "29.121111",
+      "lng": "15.940278"
+    },
+    {
+      "name": "jalo",
+      "lat": "29.028400",
+      "lng": "21.536600"
+    },
+    {
+      "name": "lanoof",
+      "lat": "30.574677",
+      "lng": "18.417892"
+    },
+    {
+      "name": "ojla",
+      "lat": "29.108056",
+      "lng": "21.286944"
+    },
+    {
+      "name": "topruq",
+      "lat": "32.071520",
+      "lng": "23.963242"
+    },
+    {
+      "name": "walead",
+      "lat": "31.757656",
+      "lng": "13.991432"
+    },
+    {
+      "name": "kofra",
+      "lat": "24.2",
+      "lng": "23.29"
+    },
+    {
+      "name": "marij",
+      "lat": "32.481809",
+      "lng": "20.837631"
+    },
+    {
+      "name": "aljaghbub",
+      "lat": "29.74261",
+      "lng": "24.51674"
+    },
+    {
+      "name": "benjuwad",
+      "lat": "30.788447",
+      "lng": "18.089676"
+    },
+    {
+      "name": "shahat",
+      "lat": "32.827096",
+      "lng": "21.873093"
+    },
+    {
+      "name": "zwara",
+      "lat": "32.933200",
+      "lng": "12.087021"
+    },
+    {
+      "name": "ubari",
+      "lat": "26.583333",
+      "lng": "12.766667"
+    },
+    {
+      "name": "tarhona",
+      "lat": "32.43296",
+      "lng": "13.6345"
+    },
+    {
+      "name": "gherian",
+      "lat": "32.1679",
+      "lng": "13.01850"
+    },
+    {
+      "name": "ghaat",
+      "lat": "24.9588",
+      "lng": "10.17787"
+    },
+    {
+      "name": "morzuk",
+      "lat": "25.9181",
+      "lng": "13.9221"
+    },
+    {
+      "name": "naloot",
+      "lat": "31.8660",
+      "lng": "10.9818"
+    },
+    {
+      "name": "zultun",
+      "lat": "32.94743",
+      "lng": "11.8642"
+    },
+    {
+      "name": "qasr",
+      "lat": "32.7092",
+      "lng": "13.9355"
+    },
+    {
+      "name": "rhaibat",
+      "lat": "31.8690",
+      "lng": "11.888"
+    },
+    {
+      "name": "reyayna",
+      "lat": "31.9930",
+      "lng": "12.345"
+    },
+    {
+      "name": "subratah",
+      "lat": "32.79057",
+      "lng": "12.48467"
+    },
+    {
+      "name": "temesa",
+      "lat": "26.39521",
+      "lng": "15.7842"
+    },
+    {
+      "name": "mesalatah",
+      "lat": "32.58115",
+      "lng": "14.04076"
+    },
+    {
+      "name": "shwayrif",
+      "lat": "29.98159",
+      "lng": "14.261115"
+    },
+    {
+      "name": "surman",
+      "lat": "32.75746",
+      "lng": "12.57437"
+    },
+    {
+      "name": "abokemmash",
+      "lat": "33.07388",
+      "lng": "11.73622"
+    },
+    {
+      "name": "asabaa",
+      "lat": "32.039921",
+      "lng": "12.87350"
+    },
+    {
+      "name": "jomail",
+      "lat": "32.85341",
+      "lng": "12.056777"
+    },
+    {
+      "name": "reqdaleen",
+      "lat": "32.88701",
+      "lng": "11.98610"
+    },
+    {
+      "name": "zintan",
+      "lat": "31.929304",
+      "lng": "12.252674"
+    },
+    {
+      "name": "sharqeyah",
+      "lat": "32.015601",
+      "lng": "12.37094"
+    },
+    {
+      "name": "elajelat",
+      "lat": "32.757308",
+      "lng": "12.37649"
+    },
+    {
+      "name": "azizayah",
+      "lat": "32.53096",
+      "lng": "13.018034"
+    },
+    {
+      "name": "alessah",
+      "lat": "32.82932",
+      "lng": "11.62987"
+    },
+    {
+      "name": "foqaha",
+      "lat": "27.81241",
+      "lng": "16.39018"
+    },
+    {
+      "name": "qarabolle",
+      "lat": "32.74397",
+      "lng": "13.71517"
+    },
+    {
+      "name": "qatroun",
+      "lat": "24.9268",
+      "lng": "14.57623"
+    },
+    {
+      "name": "hesha",
+      "lat": "31.45507",
+      "lng": "15.25467"
+    },
+    {
+      "name": "bentbeyah",
+      "lat": "26.64615",
+      "lng": "13.65162"
+    },
+    {
+      "name": "tazerbo",
+      "lat": "25.673925",
+      "lng": "21.085161"
+    },
+    {
+      "name": "trahgen",
+      "lat": "25.930058",
+      "lng": "14.437549"
+    },
+    {
+      "name": "jadou",
+      "lat": "31.9575377",
+      "lng": "12.026313"
+    },
+    {
+      "name": "rejban",
+      "lat": "31.983189",
+      "lng": "12.11123"
+    },
+    {
+      "name": "rohaibat",
+      "lat": "31.87954",
+      "lng": "11.894677"
+    },
+    {
+      "name": "joush",
+      "lat": "31.99318",
+      "lng": "11.670672"
+    },
+    {
+      "name": "shakshouk",
+      "lat": "32.01943",
+      "lng": "11.954006"
+    },
+    {
+      "name": "daraj",
+      "lat": "30.16584",
+      "lng": "10.4591613"
+    },
+    {
+      "name": "rasejdair",
+      "lat": "33.14851",
+      "lng": "11.56709"
+    },
+    {
+      "name": "zallah",
+      "lat": "28.55611",
+      "lng": "17.544834"
+    },
+    {
+      "name": "maradah",
+      "lat": "29.2255206",
+      "lng": "19.206786"
+    },
+    {
+      "name": "mezdah",
+      "lat": "31.449137",
+      "lng": "12.98495"
+    },
+    {
+      "name": "nesmah",
+      "lat": "31.39576",
+      "lng": "13.32819"
+    },
+    {
+      "name": "shqaiqa",
+      "lat": "31.63827",
+      "lng": "12.80573"
+    },
+    {
+      "name": "wadibawanees",
+      "lat": "27.368739",
+      "lng": "14.90664"
+    },
+    {
+      "name": "wadizamzam",
+      "lat": "31.361756",
+      "lng": "15.24526"
+    },
+    {
+      "name": "yefren",
+      "lat": "32.05949",
+      "lng": "12.53096"
+    },
+    {
+      "name": "qalaa",
+      "lat": "32.06404",
+      "lng": "12.56421"
+    },
+    {
+      "name": "dhaherjabal",
+      "lat": "31.99444",
+      "lng": "12.55973"
+    },
+    {
+      "name": "sokna",
+      "lat": "29.067784",
+      "lng": "15.78626"
+    },
+    {
+      "name": "weddan",
+      "lat": "29.16194",
+      "lng": "16.139854"
+    },
+    {
+      "name": "hawamid",
+      "lat": "31.974615",
+      "lng": "11.15942"
+    },
+    {
+      "name": "tiji",
+      "lat": "32.0114023",
+      "lng": "11.356206"
+    },
+    {
+      "name": "kabaw",
+      "lat": "31.843401",
+      "lng": "11.33784"
+    },
+    {
+      "name": "badr",
+      "lat": "32.05542",
+      "lng": "11.54253"
+    },
+    {
+      "name": "wazin",
+      "lat": "31.941693",
+      "lng": "10.666458"
+    },
+    {
+      "name": "awladMahmoud",
+      "lat": "31.82594",
+      "lng": "11.04792"
+    },
+    {
+      "name": "alghazaya",
+      "lat": "32.00247",
+      "lng": "10.833407"
+    },
+    {
+      "name": "majabrah",
+      "lat": "31.85888",
+      "lng": "11.1594"
+    },
+    {
+      "name": "tamzin",
+      "lat": "31.852181",
+      "lng": "11.417202"
+    },
+    {
+      "name": "kikla",
+      "lat": "32.068921",
+      "lng": "12.69087"
+    },
+    {
+      "name": "tabaqah",
+      "lat": "30.43183",
+      "lng": "13.30467"
+    },
+    {
+      "name": "abogharb",
+      "lat": "30.66913",
+      "lng": "13.59055"
+    },
+    {
+      "name": "umrezam",
+      "lat": "32.534554",
+      "lng": "23.006168"
+    },
+    {
+      "name": "ejkhara",
+      "lat": "29.29969",
+      "lng": "21.64876"
+    },
+    {
+      "name": "abraq",
+      "lat": "32.79244",
+      "lng": "21.98983"
+    },
+    {
+      "name": "urban",
+      "lat": "32.034915",
+      "lng": "13.28304"
+    },
+    {
+      "name": "qubba",
+      "lat": "32.762696",
+      "lng": "22.23831"
+    },
+    {
+      "name": "alqaryat",
+      "lat": "30.38823",
+      "lng": "13.58065"
+    },
+    {
+      "name": "qaara",
+      "lat": "31.954485",
+      "lng": "24.20087"
+    },
+    {
+      "name": "wishka",
+      "lat": "31.36154",
+      "lng": "15.57279"
+    },
+    {
+      "name": "beershahab",
+      "lat": "31.885103",
+      "lng": "24.657403"
+    },
+    {
+      "name": "salooq",
+      "lat": "31.670861",
+      "lng": "20.260574"
+    },
+    {
+      "name": "ainghazala",
+      "lat": "32.14455",
+      "lng": "23.35804"
+    },
+    {
+      "name": "qaserjadi",
+      "lat": "31.85148",
+      "lng": "24.78857"
+    },
+    {
+      "name": "qmenes",
+      "lat": "31.66027",
+      "lng": "20.0197604"
+    },
+    {
+      "name": "marsadefna",
+      "lat": "31.994034",
+      "lng": "24.7525492"
+    },
+    {
+      "name": "harawa",
+      "lat": "31.053797",
+      "lng": "17.28422"
+    },
+    {
+      "name": "wadiutba",
+      "lat": "26.08518",
+      "lng": "13.51021"
+    },
+    {
+      "name": "brakshatti",
+      "lat": "27.550002",
+      "lng": "14.2713"
+    },
+    {
+      "name": "edrishatti",
+      "lat": "27.44693",
+      "lng": "13.05233"
+    },
+    {
+      "name": "qordashatti",
+      "lat": "27.49224",
+      "lng": "13.97204"
+    },
+    {
+      "name": "mshashia",
+      "lat": "31.97858",
+      "lng": "12.48481"
+    },
+    {
+      "name": "susah",
+      "lat": "32.89715",
+      "lng": "21.96883"
+    },
+    {
+      "name": "entesar",
+      "lat": "28.90954",
+      "lng": "20.96071"
+    },
+    {
+      "name": "bori",
+      "lat": "34.0822",
+      "lng": "12.7867"
+    },
+    {
+      "name": "sareer",
+      "lat": "27.64963",
+      "lng": "22.5005"
+    },
+    {
+      "name": "waha",
+      "lat": "28.298493",
+      "lng": "19.9232341"
+    },
+    {
+      "name": "hamada",
+      "lat": "30.0230776",
+      "lng": "12.139714"
+    },
+    {
+      "name": "elfeel",
+      "lat": "26.048403",
+      "lng": "11.98058"
+    },
+    {
+      "name": "sharara",
+      "lat": "26.574811",
+      "lng": "12.22692"
+    },
+    {
+      "name": "jorof",
+      "lat": "33.52995",
+      "lng": "12.30001"
+    },
+    {
+      "name": "wafa",
+      "lat": "28.89644",
+      "lng": "10.041583"
+    },
+    {
+      "name": "samah",
+      "lat": "28.16401",
+      "lng": "19.169104"
+    },
+    {
+      "name": "baidhafield",
+      "lat": "28.42915",
+      "lng": "19.0377828"
+    },
+    {
+      "name": "tebesti",
+      "lat": "28.599188",
+      "lng": "19.3179684"
+    }
+  ]
+}

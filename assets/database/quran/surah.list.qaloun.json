@@ -1,0 +1,573 @@
+[
+    {
+        "name": "الفَاتِحة",
+        "page": 1,
+        "totalVerses": 7
+    },
+    {
+        "name": "البَقَرَة",
+        "page": 2,
+        "totalVerses": 285
+    },
+    {
+        "name": "آل عِمران",
+        "page": 50,
+        "totalVerses": 200
+    },
+    {
+        "name": "النِّسَاء",
+        "page": 77,
+        "totalVerses": 175
+    },
+    {
+        "name": "المَائدة",
+        "page": 106,
+        "totalVerses": 122
+    },
+    {
+        "name": "الأنعَام",
+        "page": 128,
+        "totalVerses": 167
+    },
+    {
+        "name": "الأعرَاف",
+        "page": 151,
+        "totalVerses": 206
+    },
+    {
+        "name": "الأنفَال",
+        "page": 177,
+        "totalVerses": 76
+    },
+    {
+        "name": "التوبَة",
+        "page": 187,
+        "totalVerses": 130
+    },
+    {
+        "name": "يُونس",
+        "page": 208,
+        "totalVerses": 109
+    },
+    {
+        "name": "هُود",
+        "page": 221,
+        "totalVerses": 121
+    },
+    {
+        "name": "يُوسُف",
+        "page": 235,
+        "totalVerses": 111
+    },
+    {
+        "name": "الرَّعد",
+        "page": 249,
+        "totalVerses": 44
+    },
+    {
+        "name": "إبراهِيم",
+        "page": 255,
+        "totalVerses": 54
+    },
+    {
+        "name": "الحِجر",
+        "page": 262,
+        "totalVerses": 99
+    },
+    {
+        "name": "النَّحل",
+        "page": 267,
+        "totalVerses": 128
+    },
+    {
+        "name": "الإسرَاء",
+        "page": 282,
+        "totalVerses": 110
+    },
+    {
+        "name": "الكَهف",
+        "page": 293,
+        "totalVerses": 105
+    },
+    {
+        "name": "مَريَم",
+        "page": 305,
+        "totalVerses": 99
+    },
+    {
+        "name": "طه",
+        "page": 312,
+        "totalVerses": 134
+    },
+    {
+        "name": "الأنبيَاء",
+        "page": 322,
+        "totalVerses": 111
+    },
+    {
+        "name": "الحج",
+        "page": 332,
+        "totalVerses": 76
+    },
+    {
+        "name": "المؤمنُون",
+        "page": 342,
+        "totalVerses": 119
+    },
+    {
+        "name": "النور",
+        "page": 350,
+        "totalVerses": 62
+    },
+    {
+        "name": "الفُرقَان",
+        "page": 359,
+        "totalVerses": 77
+    },
+    {
+        "name": "الشعراء",
+        "page": 367,
+        "totalVerses": 226
+    },
+    {
+        "name": "النَّمل",
+        "page": 377,
+        "totalVerses": 95
+    },
+    {
+        "name": "القَصَص",
+        "page": 385,
+        "totalVerses": 88
+    },
+    {
+        "name": "العَنكبُوت",
+        "page": 396,
+        "totalVerses": 69
+    },
+    {
+        "name": "الرُّوم",
+        "page": 404,
+        "totalVerses": 59
+    },
+    {
+        "name": "لُقمَان",
+        "page": 411,
+        "totalVerses": 33
+    },
+    {
+        "name": "السَّجدة",
+        "page": 415,
+        "totalVerses": 30
+    },
+    {
+        "name": "الأحزَاب",
+        "page": 418,
+        "totalVerses": 73
+    },
+    {
+        "name": "سَبإ",
+        "page": 428,
+        "totalVerses": 54
+    },
+    {
+        "name": "فَاطِر",
+        "page": 434,
+        "totalVerses": 46
+    },
+    {
+        "name": "يسٓ",
+        "page": 440,
+        "totalVerses": 82
+    },
+    {
+        "name": "الصَّافَات",
+        "page": 446,
+        "totalVerses": 182
+    },
+    {
+        "name": "صٓ",
+        "page": 453,
+        "totalVerses": 86
+    },
+    {
+        "name": "الزُّمَر",
+        "page": 458,
+        "totalVerses": 72
+    },
+    {
+        "name": "غَافِر",
+        "page": 467,
+        "totalVerses": 84
+    },
+    {
+        "name": "فُصِّلَت",
+        "page": 477,
+        "totalVerses": 53
+    },
+    {
+        "name": "الشُّوري",
+        "page": 483,
+        "totalVerses": 50
+    },
+    {
+        "name": "الزُّخرُف",
+        "page": 489,
+        "totalVerses": 89
+    },
+    {
+        "name": "الدُّخان",
+        "page": 496,
+        "totalVerses": 56
+    },
+    {
+        "name": "الجاثِية",
+        "page": 499,
+        "totalVerses": 36
+    },
+    {
+        "name": "الأحقَاف",
+        "page": 502,
+        "totalVerses": 34
+    },
+    {
+        "name": "مُحمد",
+        "page": 507,
+        "totalVerses": 39
+    },
+    {
+        "name": "الفَتح",
+        "page": 511,
+        "totalVerses": 29
+    },
+    {
+        "name": "الحُجُرَات",
+        "page": 515,
+        "totalVerses": 18
+    },
+    {
+        "name": "قٓ",
+        "page": 518,
+        "totalVerses": 45
+    },
+    {
+        "name": "الذَّاريَات",
+        "page": 520,
+        "totalVerses": 60
+    },
+    {
+        "name": "الطُّور",
+        "page": 523,
+        "totalVerses": 47
+    },
+    {
+        "name": "النَّجم",
+        "page": 526,
+        "totalVerses": 61
+    },
+    {
+        "name": "القَمَر",
+        "page": 528,
+        "totalVerses": 55
+    },
+    {
+        "name": "الرَّحمٰن",
+        "page": 531,
+        "totalVerses": 77
+    },
+    {
+        "name": "الوَاقِعة",
+        "page": 534,
+        "totalVerses": 99
+    },
+    {
+        "name": "الحدِيد",
+        "page": 537,
+        "totalVerses": 28
+    },
+    {
+        "name": "المُجَادلة",
+        "page": 542,
+        "totalVerses": 21
+    },
+    {
+        "name": "الحَشر",
+        "page": 545,
+        "totalVerses": 24
+    },
+    {
+        "name": "المُمتَحنَة",
+        "page": 549,
+        "totalVerses": 13
+    },
+    {
+        "name": "الصَّف",
+        "page": 551,
+        "totalVerses": 14
+    },
+    {
+        "name": "الجُمعَة",
+        "page": 553,
+        "totalVerses": 11
+    },
+    {
+        "name": "المُنَافِقُونَ",
+        "page": 554,
+        "totalVerses": 11
+    },
+    {
+        "name": "التغَابُن",
+        "page": 556,
+        "totalVerses": 18
+    },
+    {
+        "name": "الطَّلَاق",
+        "page": 558,
+        "totalVerses": 12
+    },
+    {
+        "name": "التَّحرِيم",
+        "page": 560,
+        "totalVerses": 12
+    },
+    {
+        "name": "المُلك",
+        "page": 562,
+        "totalVerses": 31
+    },
+    {
+        "name": "القَلَم",
+        "page": 564,
+        "totalVerses": 52
+    },
+    {
+        "name": "الحَاقة",
+        "page": 566,
+        "totalVerses": 52
+    },
+    {
+        "name": "المَعَارج",
+        "page": 568,
+        "totalVerses": 44
+    },
+    {
+        "name": "نُوح",
+        "page": 570,
+        "totalVerses": 30
+    },
+    {
+        "name": "الجِن",
+        "page": 572,
+        "totalVerses": 28
+    },
+    {
+        "name": "المُزمل",
+        "page": 574,
+        "totalVerses": 18
+    },
+    {
+        "name": "المُدثر",
+        "page": 575,
+        "totalVerses": 55
+    },
+    {
+        "name": "القِيَامة",
+        "page": 577,
+        "totalVerses": 39
+    },
+    {
+        "name": "الإنسَان",
+        "page": 578,
+        "totalVerses": 31
+    },
+    {
+        "name": "المُرسَلات",
+        "page": 580,
+        "totalVerses": 50
+    },
+    {
+        "name": "النَّبَإ",
+        "page": 582,
+        "totalVerses": 40
+    },
+    {
+        "name": "النَّازعَات",
+        "page": 583,
+        "totalVerses": 45
+    },
+    {
+        "name": "عَبَسَ",
+        "page": 585,
+        "totalVerses": 42
+    },
+    {
+        "name": "التَّكوير",
+        "page": 586,
+        "totalVerses": 29
+    },
+    {
+        "name": "الانفِطَار",
+        "page": 587,
+        "totalVerses": 19
+    },
+    {
+        "name": "المُطَففين",
+        "page": 587,
+        "totalVerses": 36
+    },
+    {
+        "name": "الانشِقَاق",
+        "page": 589,
+        "totalVerses": 25
+    },
+    {
+        "name": "البُرُوج",
+        "page": 590,
+        "totalVerses": 22
+    },
+    {
+        "name": "الطَّارق",
+        "page": 591,
+        "totalVerses": 17
+    },
+    {
+        "name": "الأعلى",
+        "page": 591,
+        "totalVerses": 19
+    },
+    {
+        "name": "الغَاشِية",
+        "page": 592,
+        "totalVerses": 26
+    },
+    {
+        "name": "الفَجر",
+        "page": 593,
+        "totalVerses": 32
+    },
+    {
+        "name": "البَلَد",
+        "page": 594,
+        "totalVerses": 20
+    },
+    {
+        "name": "الشَّمس",
+        "page": 595,
+        "totalVerses": 15
+    },
+    {
+        "name": "اللَّيل",
+        "page": 595,
+        "totalVerses": 21
+    },
+    {
+        "name": "الضُّحى",
+        "page": 596,
+        "totalVerses": 11
+    },
+    {
+        "name": "الشَّرح",
+        "page": 596,
+        "totalVerses": 8
+    },
+    {
+        "name": "التِّين",
+        "page": 597,
+        "totalVerses": 8
+    },
+    {
+        "name": "العَلَق",
+        "page": 597,
+        "totalVerses": 20
+    },
+    {
+        "name": "القَدر",
+        "page": 598,
+        "totalVerses": 5
+    },
+    {
+        "name": "البَينَة",
+        "page": 598,
+        "totalVerses": 8
+    },
+    {
+        "name": "الزَّلزَلة",
+        "page": 599,
+        "totalVerses": 9
+    },
+    {
+        "name": "العَاديَات",
+        "page": 599,
+        "totalVerses": 11
+    },
+    {
+        "name": "القَارعَة",
+        "page": 600,
+        "totalVerses": 10
+    },
+    {
+        "name": "التَّكاثُر",
+        "page": 600,
+        "totalVerses": 8
+    },
+    {
+        "name": "العَصر",
+        "page": 601,
+        "totalVerses": 3
+    },
+    {
+        "name": "الهُمَزة",
+        "page": 601,
+        "totalVerses": 9
+    },
+    {
+        "name": "الفِيل",
+        "page": 601,
+        "totalVerses": 5
+    },
+    {
+        "name": "قُرَيش",
+        "page": 602,
+        "totalVerses": 5
+    },
+    {
+        "name": "المَاعُون",
+        "page": 602,
+        "totalVerses": 6
+    },
+    {
+        "name": "الكَوثر",
+        "page": 602,
+        "totalVerses": 3
+    },
+    {
+        "name": "الكافِرون",
+        "page": 603,
+        "totalVerses": 6
+    },
+    {
+        "name": "النَّصر",
+        "page": 603,
+        "totalVerses": 3
+    },
+    {
+        "name": "المَسَد",
+        "page": 603,
+        "totalVerses": 5
+    },
+    {
+        "name": "الإخلَاص",
+        "page": 604,
+        "totalVerses": 4
+    },
+    {
+        "name": "الفَلَق",
+        "page": 604,
+        "totalVerses": 5
+    },
+    {
+        "name": "النَّاس",
+        "page": 604,
+        "totalVerses": 6
+    }
+]
+

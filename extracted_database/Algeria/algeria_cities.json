@@ -1,0 +1,478 @@
+[
+  {
+    "id": 1,
+    "cityNameEN": "",
+    "cityNameAR": "الجلفة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 2,
+    "cityNameEN": "",
+    "cityNameAR": "تبسة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 3,
+    "cityNameEN": "",
+    "cityNameAR": "بئر العاتر",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 4,
+    "cityNameEN": "",
+    "cityNameAR": "خنشلة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 5,
+    "cityNameEN": "",
+    "cityNameAR": "الوادي",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 6,
+    "cityNameEN": "",
+    "cityNameAR": "باتنة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 7,
+    "cityNameEN": "",
+    "cityNameAR": "تقرت",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 8,
+    "cityNameEN": "",
+    "cityNameAR": "بسكرة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 10,
+    "cityNameEN": "",
+    "cityNameAR": "بوسعادة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 11,
+    "cityNameEN": "",
+    "cityNameAR": "عين الملح",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 12,
+    "cityNameEN": "",
+    "cityNameAR": "حاسي الرمل",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 13,
+    "cityNameEN": "",
+    "cityNameAR": "الأغواط",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 14,
+    "cityNameEN": "",
+    "cityNameAR": "عين وسارة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 15,
+    "cityNameEN": "",
+    "cityNameAR": "تيسمسيلت",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 16,
+    "cityNameEN": "",
+    "cityNameAR": "تيارت",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 17,
+    "cityNameEN": "",
+    "cityNameAR": "البيض",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 18,
+    "cityNameEN": "",
+    "cityNameAR": "سعيدة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 19,
+    "cityNameEN": "",
+    "cityNameAR": "معسكر",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 20,
+    "cityNameEN": "",
+    "cityNameAR": "النعامة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 21,
+    "cityNameEN": "",
+    "cityNameAR": "سيدي بلعباس",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 22,
+    "cityNameEN": "",
+    "cityNameAR": "ابن باديس",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 23,
+    "cityNameEN": "",
+    "cityNameAR": "تلمسان",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 24,
+    "cityNameEN": "",
+    "cityNameAR": "عين تموشنت",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 25,
+    "cityNameEN": "",
+    "cityNameAR": "سبدو",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 26,
+    "cityNameEN": "",
+    "cityNameAR": "مغنية",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 27,
+    "cityNameEN": "",
+    "cityNameAR": "الجزائر",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 28,
+    "cityNameEN": "",
+    "cityNameAR": "وهران",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 29,
+    "cityNameEN": "",
+    "cityNameAR": "مستغانم",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 30,
+    "cityNameEN": "",
+    "cityNameAR": "غليزان",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 31,
+    "cityNameEN": "",
+    "cityNameAR": "الشلف",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 32,
+    "cityNameEN": "",
+    "cityNameAR": "عين الدفلى",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 33,
+    "cityNameEN": "",
+    "cityNameAR": "تيبازة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 34,
+    "cityNameEN": "",
+    "cityNameAR": "المدية",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 35,
+    "cityNameEN": "",
+    "cityNameAR": "البليدة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 36,
+    "cityNameEN": "",
+    "cityNameAR": "بومرداس",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 37,
+    "cityNameEN": "",
+    "cityNameAR": "البويرة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 38,
+    "cityNameEN": "",
+    "cityNameAR": "دلس",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 39,
+    "cityNameEN": "",
+    "cityNameAR": "تيزي وزو",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 40,
+    "cityNameEN": "",
+    "cityNameAR": "المسيلة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 41,
+    "cityNameEN": "",
+    "cityNameAR": "برج بوعريريج",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 42,
+    "cityNameEN": "",
+    "cityNameAR": "بجاية",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 43,
+    "cityNameEN": "",
+    "cityNameAR": "سطيف",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 44,
+    "cityNameEN": "",
+    "cityNameAR": "جيجل",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 45,
+    "cityNameEN": "",
+    "cityNameAR": "ميلة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 46,
+    "cityNameEN": "",
+    "cityNameAR": "قسنطينة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 47,
+    "cityNameEN": "",
+    "cityNameAR": "سكيكدة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 48,
+    "cityNameEN": "",
+    "cityNameAR": "أم البواقي",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 49,
+    "cityNameEN": "",
+    "cityNameAR": "قالمة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 50,
+    "cityNameEN": "",
+    "cityNameAR": "عنابة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 51,
+    "cityNameEN": "",
+    "cityNameAR": "سوق أهراس",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 52,
+    "cityNameEN": "",
+    "cityNameAR": "الطارف",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 53,
+    "cityNameEN": "",
+    "cityNameAR": "أدرار",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 54,
+    "cityNameEN": "",
+    "cityNameAR": "تندوف",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 55,
+    "cityNameEN": "",
+    "cityNameAR": "بشار",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 56,
+    "cityNameEN": "",
+    "cityNameAR": "تميمون",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 57,
+    "cityNameEN": "",
+    "cityNameAR": "رقان",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 58,
+    "cityNameEN": "",
+    "cityNameAR": "برج باجي مختار",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 59,
+    "cityNameEN": "",
+    "cityNameAR": "بني عباس",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 60,
+    "cityNameEN": "",
+    "cityNameAR": "عين صالح",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 61,
+    "cityNameEN": "",
+    "cityNameAR": "المنيعة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 62,
+    "cityNameEN": "",
+    "cityNameAR": "غرداية",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 63,
+    "cityNameEN": "",
+    "cityNameAR": "ورقلة",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 64,
+    "cityNameEN": "",
+    "cityNameAR": "تمنراست",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 65,
+    "cityNameEN": "",
+    "cityNameAR": "عين قزام",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 66,
+    "cityNameEN": "",
+    "cityNameAR": "إليزي",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 67,
+    "cityNameEN": "",
+    "cityNameAR": "جانت",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 68,
+    "cityNameEN": "",
+    "cityNameAR": "عين أمناس",
+    "lat": "0",
+    "lng": "0"
+  },
+  {
+    "id": 69,
+    "cityNameEN": "",
+    "cityNameAR": "بني ونيف",
+    "lat": "0",
+    "lng": "0"
+  }
+]

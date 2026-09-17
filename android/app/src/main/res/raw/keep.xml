@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ════════════════════════════════════════════════════════════════════════════
+   حماية موارد بطاقة الإشعار من التقليص (resource shrinking)
+  ════════════════════════════════════════════════════════════════════════════
+
+  ⚠️ سبب وجود هذا الملف:
+  الإضافة المحلية flutter_local_notifications تصل إلى التخطيط بالاسم وقت
+  التشغيل عبر getIdentifier(...) — وهي طريقة لا يراها R8، فقد يحذف التخطيط
+  والرسومات من الـ APK النهائي ويصبح الإشعار عادياً بلا أي خطأ ظاهر.
+
+  كذلك مُنع التقليص صريحاً في هذا الملف لكل معرّفات العناصر (view ids)
+  التي تُلوَّن وتُكتب وقت التشغيل، ولكل رسومات البطاقة بما فيها الإطار
+  الخارجي الأبيض (notif_card_border) وأيقونة المسجد (ic_notif_mosque).
+-->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@layout/notification_prayer_collapsed,@layout/notification_prayer_expanded,@drawable/notif_card_shape,@drawable/notif_card_black,@drawable/notif_card_border,@drawable/notif_circle_shape,@drawable/notif_accent_shape,@drawable/notif_action_pill,@drawable/ic_notif_stop,@drawable/ic_notif_mosque,@font/amiri,@color/notif_card_black,@color/notif_gold,@color/notif_text_primary,@color/notif_text_secondary,@color/notif_icon_disc,@color/notif_divider,@id/notif_card_bg,@id/notif_card_border,@id/notif_accent,@id/notif_content,@id/notif_icon_badge,@id/notif_icon,@id/notif_title,@id/notif_body,@id/notif_time,@id/notif_footer,@id/notif_footer_row,@id/notif_action,@id/notif_divider"
+    tools:shrinkMode="strict" />

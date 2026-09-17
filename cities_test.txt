@@ -1,0 +1,40 @@
+1: ejdabia -> إجدابيا
+2: braiga -> البريقة
+3: baida -> البيضاء
+4: khomes -> الخمس
+5: marij -> المرج
+6: zawia -> الزاوية
+7: kofra -> الكفرة
+8: emsaad -> إمساعد
+9: ojla -> أوجلة
+10: banghazi -> بنغازي
+11: walead -> بني وليد
+12: jalo -> جالو
+13: drna -> درنة
+14: lanoof -> رأس لانوف
+15: zleatin -> زليتن
+16: sabha -> سبها
+17: siret -> سرت
+18: topruq -> طبرق
+19: tripoli -> طرابلس
+20: ghadames -> غدامس
+21: musratah -> مصراته
+22: hoon -> هون
+23: Shahat -> شحات
+24: Benjuwad -> بن جواد
+25: Aljaghbub -> الجغبوب
+26: Ubari -> اوباري
+27: zwara -> زوارة
+28: mslata -> مسلاته
+29: gaser_lhiar -> قصر الأخيار
+30: alzintan -> الزنتان
+31: gharyan -> غريان
+32: jakharrah -> إجخرة
+33: murzuq -> مرزق
+34: sarir_field -> حقل السرير
+35: tamssah -> تمسة
+36: tarhunah -> ترهونة
+37: bore_field -> حقل البوري
+38: tbqa -> طبقة
+39: hamada_field -> حقل الحمادة
+40: qariat_shargea -> القريات الشرقية

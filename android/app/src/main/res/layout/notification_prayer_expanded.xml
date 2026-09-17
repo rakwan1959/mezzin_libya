@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ════════════════════════════════════════════════════════════════════════════
+   بطاقة إشعار أوقات الصلاة — النسخة الموسّعة (RemoteViews)
+  ════════════════════════════════════════════════════════════════════════════
+
+  تظهر عند سحب الإشعار لأسفل. نفس هوية البطاقة المطوية (خلفية كحلية ملكية +
+  شريط ذهبي + قرص أيقونة + نصوص بيضاء بخط أميري) لكن مع نصّ كامل على عدة أسطر
+  وصفّ تذييل يحمل حبّة الإجراء. وكل الأزرار من رسمنا لأن الإشعار المخصّص لا
+  تُرسم معه أزرار النظام.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    android:background="@drawable/notif_card_black"
+    android:minHeight="76dp">
+
+    <!-- ① البطاقة الملوّنة -->
+    <ImageView
+        android:id="@+id/notif_card_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/notif_card_shape" />
+
+    <!-- ② الإطار الخارجي: خط أبيض رقيق جداً وخفيف حول البطاقة كلها -->
+    <ImageView
+        android:id="@+id/notif_card_border"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/notif_card_border" />
+
+    <!-- ③ الشريط الذهبي على الحافة الأمامية -->
+    <ImageView
+        android:id="@+id/notif_accent"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="12dp"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/notif_accent_shape" />
+
+    <!-- ④ المحتوى: صف العنوان ثم النص الكامل ثم التذييل -->
+    <LinearLayout
+        android:id="@+id/notif_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="22dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <FrameLayout
+                android:layout_width="38dp"
+                android:layout_height="38dp">
+
+                <ImageView
+                    android:id="@+id/notif_icon_badge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/notif_circle_shape" />
+
+                <ImageView
+                    android:id="@+id/notif_icon"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    android:layout_gravity="center"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_notif_mosque" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/notif_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/amiri"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="أوقات الصلاة"
+                android:textColor="@color/notif_text_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/notif_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/amiri"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textColor="@color/notif_gold"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- النص الكامل — حتى ستة أسطر لضمان ظهور كامل النص مع الخطوط الكبيرة -->
+        <TextView
+            android:id="@+id/notif_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/amiri"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="3dp"
+            android:maxLines="6"
+            android:ellipsize="end"
+            android:textColor="@color/notif_text_secondary"
+            android:textSize="13.5sp" />
+
+        <!-- فاصل رقيق أعلى صفّ التذييل -->
+        <ImageView
+            android:id="@+id/notif_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:importantForAccessibility="no"
+            android:visibility="gone"
+            android:background="@color/notif_divider" />
+
+        <!--
+          صفّ التذييل: نص التذييل في اليمين وحبّة الإجراء في اليسار.
+          الصفّ كله مخفي افتراضياً، ولا يُظهر إلا عند تمرير تذييل أو إجراء —
+          فلا يبقى فراغ أو خط فاصل معلّق في البطاقة.
+        -->
+        <LinearLayout
+            android:id="@+id/notif_footer_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/notif_footer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/amiri"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/notif_gold"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <!--
+              حبّة الإجراء — وأيقونة الإيقاف فيه مرسومة (`drawableStart`) لا رمزية،
+              لأن خطّ البطاقة أميري وهو لا يحوي محارف الرموز.
+            -->
+            <TextView
+                android:id="@+id/notif_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/notif_action_pill"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_notif_stop"
+                android:drawablePadding="6dp"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/amiri"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:textColor="@color/notif_gold"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

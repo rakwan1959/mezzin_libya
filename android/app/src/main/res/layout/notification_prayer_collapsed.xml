@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ════════════════════════════════════════════════════════════════════════════
+   بطاقة إشعار أوقات الصلاة — النسخة المطوية (RemoteViews)
+  ════════════════════════════════════════════════════════════════════════════
+
+  هذا التخطيط هو الحل المضمون لتلوين الإشعارات: بطاقة نرسمها بأنفسنا داخل
+  الإشعار، فلا يمكن للنظام تجاهل لونها كما كان يحدث مع setColorized وحده.
+
+  ⚠️ درس مُثبت من صورة الجهاز الفعلية:
+  كان النص في **صفّ أفقي** واحد مع القرص والوقت، فضاق عرضه فقصّه النظام إلى
+  «حان الآن موعد أذان ...» وضاعت «صلاة الفجر» — جملة ناقصة غير مفهومة.
+  فصار التخطيط **عمودياً**: صفّ رأس (قرص + عنوان + وقت) ثم **النص على كامل
+  عرض البطاقة**. فتكتمل الجملة على سطر واحد حتى مع خط نظام مكبَّر، وإن طالت
+  فيسمح بسطرين بدل أن يقطع الكلام.
+
+  وبقية القواعد:
+   ① البطاقة الملوّنة تُرسم بـ ImageView فرعي (notif_card_bg) لا بخلفية الجذر —
+      لأن SystemUI قد يمسح خلفية الجذر فلا تبقى بطاقة ملوّنة إطلاقاً.
+   ② الهوية: خلفية **كحلية ملكية** وكل النصوص **بيضاء بخط أميري** (الخط المضمَّن
+      في التطبيق، مكرّر هنا كمورد أندرويد `@font/amiri` ليعمل داخل الإشعار).
+   ③ forced RTL لأن التطبيق عربي بالكامل، مع دلالة وصفية للقارئ الشاشي.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    android:background="@drawable/notif_card_black"
+    android:minHeight="56dp">
+
+    <!-- ① البطاقة الملوّنة (زوايا دائرية، تُلوَّن وقت التشغيل بـ setColorFilter) -->
+    <ImageView
+        android:id="@+id/notif_card_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/notif_card_shape" />
+
+    <!-- ② الإطار الخارجي: خط أبيض رقيق جداً وخفيف حول البطاقة كلها -->
+    <ImageView
+        android:id="@+id/notif_card_border"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/notif_card_border" />
+
+    <!-- ③ شريط ذهبي رفيع على الحافة الأمامية (يمين) — توقيع هوية التطبيق -->
+    <ImageView
+        android:id="@+id/notif_accent"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_marginTop="11dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="11dp"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/notif_accent_shape" />
+
+    <!-- ④ المحتوى عمودياً: صفّ الرأس ثم النص بكامل العرض -->
+    <LinearLayout
+        android:id="@+id/notif_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="15dp"
+        android:paddingEnd="22dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <FrameLayout
+                android:layout_width="34dp"
+                android:layout_height="34dp">
+
+                <ImageView
+                    android:id="@+id/notif_icon_badge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/notif_circle_shape" />
+
+                <ImageView
+                    android:id="@+id/notif_icon"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:layout_gravity="center"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_notif_mosque" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/notif_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="11dp"
+                android:fontFamily="@font/amiri"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="أوقات الصلاة"
+                android:textColor="@color/notif_text_primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/notif_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/amiri"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textColor="@color/notif_gold"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <!--
+              حبّة الإجراء (مثل «إيقاف» في إشعار الأذان) — من رسمنا لأن الإشعار
+              المخصّص لا تُرسم معه أزرار النظام، وتحلّ بدل الوقت في هذه الحالة.
+
+              وأيقونة الإيقاف (`drawableStart`) مرسومة لا رمزية: خطّ البطاقة أميري
+              وهو لا يحوي محارف الرموز، فمحرف `⏹` كان يظهر مربّعاً فارغاً. وهي
+              معرّفة هنا في التخطيط، فلا تحتاج أي كود لضبطها وتثبت مع أي نصّ.
+            -->
+            <TextView
+                android:id="@+id/notif_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/notif_action_pill"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_notif_stop"
+                android:drawablePadding="6dp"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/amiri"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/notif_gold"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- النص: كامل عرض البطاقة، 3 أسطر ليتسع الدعاء كاملاً دون قطع -->
+        <TextView
+            android:id="@+id/notif_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/amiri"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="1.5dp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:textColor="@color/notif_text_secondary"
+            android:textSize="12sp" />
+    </LinearLayout>
+</FrameLayout>

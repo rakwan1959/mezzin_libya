@@ -1,0 +1,282 @@
+[
+  {
+    "id": 1,
+    "cityNameEN": "ejdabia",
+    "cityNameAR": "إجدابيا",
+    "lat": "30.800833",
+    "lng": "20.190125"
+  },
+  {
+    "id": 2,
+    "cityNameEN": "braiga",
+    "cityNameAR": "البريقة",
+    "lat": "30.480042",
+    "lng": "19.737625"
+  },
+  {
+    "id": 3,
+    "cityNameEN": "baida",
+    "cityNameAR": "البيضاء",
+    "lat": "32.765182",
+    "lng": "21.749496"
+  },
+  {
+    "id": 4,
+    "cityNameEN": "khomes",
+    "cityNameAR": "الخمس",
+    "lat": "32.634171",
+    "lng": "14.251328"
+  },
+  {
+    "id": 5,
+    "cityNameEN": "marij",
+    "cityNameAR": "المرج",
+    "lat": "32.481809",
+    "lng": "20.837631"
+  },
+  {
+    "id": 6,
+    "cityNameEN": "zawia",
+    "cityNameAR": "الزاوية",
+    "lat": "32.749745",
+    "lng": "12.724228"
+  },
+  {
+    "id": 7,
+    "cityNameEN": "kofra",
+    "cityNameAR": "الكفرة",
+    "lat": "24.2",
+    "lng": "23.29"
+  },
+  {
+    "id": 8,
+    "cityNameEN": "emsaad",
+    "cityNameAR": "إمساعد",
+    "lat": "31.602516",
+    "lng": "25.050888"
+  },
+  {
+    "id": 9,
+    "cityNameEN": "ojla",
+    "cityNameAR": "أوجلة",
+    "lat": "29.108056",
+    "lng": "21.286944"
+  },
+  {
+    "id": 10,
+    "cityNameEN": "banghazi",
+    "cityNameAR": "بنغازي",
+    "lat": "32.101035",
+    "lng": "20.086441"
+  },
+  {
+    "id": 11,
+    "cityNameEN": "walead",
+    "cityNameAR": "بني وليد",
+    "lat": "31.757656",
+    "lng": "13.991432"
+  },
+  {
+    "id": 12,
+    "cityNameEN": "jalo",
+    "cityNameAR": "جالو",
+    "lat": "29.0284",
+    "lng": "21.5366"
+  },
+  {
+    "id": 13,
+    "cityNameEN": "drna",
+    "cityNameAR": "درنة",
+    "lat": "32.761294",
+    "lng": "22.635269"
+  },
+  {
+    "id": 14,
+    "cityNameEN": "lanoof",
+    "cityNameAR": "رأس لانوف",
+    "lat": "30.574677",
+    "lng": "18.417892"
+  },
+  {
+    "id": 15,
+    "cityNameEN": "zleatin",
+    "cityNameAR": "زليتن",
+    "lat": "32.462847",
+    "lng": "14.565811"
+  },
+  {
+    "id": 16,
+    "cityNameEN": "sabha",
+    "cityNameAR": "سبها",
+    "lat": "27.134761",
+    "lng": "14.425049"
+  },
+  {
+    "id": 17,
+    "cityNameEN": "siret",
+    "cityNameAR": "سرت",
+    "lat": "31.198119",
+    "lng": "16.601028"
+  },
+  {
+    "id": 18,
+    "cityNameEN": "topruq",
+    "cityNameAR": "طبرق",
+    "lat": "32.07152",
+    "lng": "23.963242"
+  },
+  {
+    "id": 19,
+    "cityNameEN": "tripoli",
+    "cityNameAR": "طرابلس",
+    "lat": "32.881317",
+    "lng": "13.19252"
+  },
+  {
+    "id": 20,
+    "cityNameEN": "ghadames",
+    "cityNameAR": "غدامس",
+    "lat": "30.133333",
+    "lng": "9.5"
+  },
+  {
+    "id": 21,
+    "cityNameEN": "musratah",
+    "cityNameAR": "مصراته",
+    "lat": "32.372423",
+    "lng": "15.108261"
+  },
+  {
+    "id": 22,
+    "cityNameEN": "hoon",
+    "cityNameAR": "هون",
+    "lat": "29.121111",
+    "lng": "15.940278"
+  },
+  {
+    "id": 23,
+    "cityNameEN": "Shahat",
+    "cityNameAR": "شحات",
+    "lat": "32.827096",
+    "lng": "21.873093"
+  },
+  {
+    "id": 24,
+    "cityNameEN": "Benjuwad",
+    "cityNameAR": "بن جواد",
+    "lat": "30.788447",
+    "lng": "18.089676"
+  },
+  {
+    "id": 25,
+    "cityNameEN": "Aljaghbub",
+    "cityNameAR": "الجغبوب",
+    "lat": "29.7425",
+    "lng": "24.516944"
+  },
+  {
+    "id": 26,
+    "cityNameEN": "Ubari",
+    "cityNameAR": "اوباري",
+    "lat": "26.583333",
+    "lng": "12.766667"
+  },
+  {
+    "id": 27,
+    "cityNameEN": "zwara",
+    "cityNameAR": "زوارة",
+    "lat": "32.9332",
+    "lng": "12.087021"
+  },
+  {
+    "id": 28,
+    "cityNameEN": "mslata",
+    "cityNameAR": "مسلاته",
+    "lat": "32.582039",
+    "lng": "14.038553"
+  },
+  {
+    "id": 29,
+    "cityNameEN": "gaser_lhiar",
+    "cityNameAR": "قصر الأخيار",
+    "lat": "32.698228",
+    "lng": "13.845571"
+  },
+  {
+    "id": 30,
+    "cityNameEN": "alzintan",
+    "cityNameAR": "الزنتان",
+    "lat": "31.928014",
+    "lng": "12.251507"
+  },
+  {
+    "id": 31,
+    "cityNameEN": "gharyan",
+    "cityNameAR": "غريان",
+    "lat": "32.164582",
+    "lng": "13.01686"
+  },
+  {
+    "id": 32,
+    "cityNameEN": "jakharrah",
+    "cityNameAR": "إجخرة",
+    "lat": "29.293061",
+    "lng": "21.646792"
+  },
+  {
+    "id": 33,
+    "cityNameEN": "murzuq",
+    "cityNameAR": "مرزق",
+    "lat": "25.91818",
+    "lng": "13.921147"
+  },
+  {
+    "id": 34,
+    "cityNameEN": "sarir_field",
+    "cityNameAR": "حقل السرير",
+    "lat": "27.650161",
+    "lng": "22.498285"
+  },
+  {
+    "id": 35,
+    "cityNameEN": "tamssah",
+    "cityNameAR": "تمسة",
+    "lat": "26.395692",
+    "lng": "15.784268"
+  },
+  {
+    "id": 36,
+    "cityNameEN": "tarhunah",
+    "cityNameAR": "ترهونة",
+    "lat": "32.4342765",
+    "lng": "13.6309983"
+  },
+  {
+    "id": 37,
+    "cityNameEN": "bore_field",
+    "cityNameAR": "حقل البوري",
+    "lat": "34.0546012",
+    "lng": "12.7898389"
+  },
+  {
+    "id": 38,
+    "cityNameEN": "tbqa",
+    "cityNameAR": "طبقة",
+    "lat": "30.432383",
+    "lng": "13.3076"
+  },
+  {
+    "id": 39,
+    "cityNameEN": "hamada_field",
+    "cityNameAR": "حقل الحمادة",
+    "lat": "30.6831827",
+    "lng": "12.4742879"
+  },
+  {
+    "id": 40,
+    "cityNameEN": "qariat_shargea",
+    "cityNameAR": "القريات الشرقية",
+    "lat": "30.388935",
+    "lng": "13.581183"
+  }
+]

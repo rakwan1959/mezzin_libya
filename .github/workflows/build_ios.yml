@@ -1,0 +1,116 @@
+name: Build iOS
+
+# بناء تطبيق iOS (IPA) من الكود المصدري على macOS السحابي.
+# يعمل يدوياً من تبويب Actions، وعند كل دفع لمجلدات الكود الأساسية.
+#
+# ملاحظة التوقيع: المخرج هنا IPA **غير موقّع** (صالح للتثبيت عبر AltStore/Sideloadly
+# أو للتشغيل على المحاكي). للتوقيع الكامل راجع docs/BUILD_IOS.md
+# (يحتاج Apple Developer Account وشهادات في GitHub Secrets).
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_simulator:
+        description: 'بناء نسخة محاكي إضافية (true/false)'
+        required: false
+        default: 'false'
+  push:
+    branches: [main, master]
+    paths:
+      - 'lib/**'
+      - 'ios/**'
+      - 'pubspec.yaml'
+      - 'plugins/**'
+      - '.github/workflows/build_ios.yml'
+
+jobs:
+  build:
+    name: Build iOS IPA
+    runs-on: macos-15
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Show Flutter version
+        run: flutter --version
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Install CocoaPods
+        working-directory: ios
+        run: |
+          pod --version || (gem install cocoapods --no-document || sudo gem install cocoapods --no-document)
+          pod install
+
+      # بناء بدون توقيع: التوقيع مطلوب فقط لـ App Store/TestFlight،
+      # أما IPA غير الموقّع فيصلح لـ AltStore / Sideloadly / TrollStore.
+      - name: Build iOS app (unsigned)
+        run: flutter build ios --release --no-codesign --build-number ${{ github.run_number }}
+
+      # تغليف IPA يدوياً (Payload/*.app) — الطريقة الموثوقة لـ IPA غير موقّع.
+      - name: Package unsigned IPA
+        run: |
+          mkdir -p Payload output
+          cp -R build/ios/iphoneos/Runner.app Payload/
+          zip -qry output/muezzin_libya_app_v${{ github.run_number }}.ipa Payload
+          rm -rf Payload
+          ls -la output/
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: muezzin-ios-ipa-${{ github.run_number }}
+          path: output/*.ipa
+          retention-days: 30
+
+      # نسخة المحاكي (اختيارية — لتجربة التطبيق دون جهاز حقيقي)
+      - name: Build simulator app
+        if: github.event_name == 'workflow_dispatch' && inputs.build_simulator == 'true'
+        run: flutter build ios --simulator --debug --build-number ${{ github.run_number }}
+
+      - name: Upload simulator app
+        if: github.event_name == 'workflow_dispatch' && inputs.build_simulator == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: muezzin-ios-simulator-${{ github.run_number }}
+          path: build/ios/iphonesimulator/Runner.app
+          retention-days: 14
+
+  # ──────────────────────────────────────────────────────────────────────
+  # التوقيع الكامل (App Store / TestFlight) — فعّل هذا الـ job بعد إضافة
+  # الأسرار المذكورة في docs/BUILD_IOS.md إلى GitHub Secrets.
+  # ──────────────────────────────────────────────────────────────────────
+  # sign:
+  #   name: Sign & Export IPA
+  #   runs-on: macos-15
+  #   needs: build
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: subosito/flutter-action@v2
+  #       with:
+  #         channel: stable
+  #     - run: flutter pub get
+  #     - name: Import signing certificate
+  #       uses: apple-actions/import-codesign-certs@v3
+  #       with:
+  #         p12-file-base64: ${{ secrets.APPLE_CERTIFICATE_P12 }}
+  #         p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+  #     - name: Build & export signed IPA
+  #       run: |
+  #         flutter build ipa --release \
+  #           --export-options-plist=ios/ExportOptions.plist \
+  #           --build-number ${{ github.run_number }}
+  #       # ملاحظة: عدّل ios/ExportOptions.plist (teamID + method) قبل التوقيع.
+  #     - uses: actions/upload-artifact@v4
+  #       with:
+  #         name: muezzin-ios-signed-${{ github.run_number }}
+  #         path: build/ios/ipa/*.ipa
