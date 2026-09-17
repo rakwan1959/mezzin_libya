@@ -80,6 +80,35 @@
 5. أدخل **Profile Name** واضحاً (مثل `Muezzin Libya AppStore`) → Generate → **Download**.
    - هذا الاسم بالحرف هو `APPLE_PROVISIONING_PROFILE_NAME`.
 
+### بديل: إنشاء الشهادة على Windows بلا Mac (OpenSSL)
+
+`openssl` موجود في Git for Windows، فيمكن إنشاء الشهادة كلها من جهازك:
+
+```bash
+# 0) في Git Bash داخل مجلد آمن (لا تضعه داخل المشروع)
+# 1) مفتاح خاص + طلب شهادة (CSR)
+openssl req -new -newkey rsa:2048 -nodes \
+  -keyout distribution.key \
+  -out distribution.csr \
+  -subj "/emailAddress=your@email.com/CN=Muezzin Libya Distribution/C=LY"
+
+# 2) ارفع distribution.csr في: Certificates → + → Apple Distribution → Continue
+#    ثم نزّل ملف الشهادة distribution.cer
+
+# 3) حوّل الشهادة ثم ادمجها مع المفتاح في ملف .p12 واحد
+openssl x509 -inform DER -in distribution.cer -out distribution.pem
+openssl pkcs12 -export -inkey distribution.key -in distribution.pem \
+  -out distribution.p12 -name "Apple Distribution"
+# سيسألك عن كلمة سر للـ p12 → هذه هي APPLE_CERTIFICATE_PASSWORD
+
+# 4) تحقّق أن الـ p12 يحوي المفتاح والشهادة معاً
+openssl pkcs12 -info -in distribution.p12 -noout
+```
+
+> ⚠️ لا ترفع `distribution.key` أو `distribution.p12` إلى المستودع أبداً — فقط
+> محتواهما بصيغة Base64 كأسرار في GitHub. وإن فقدت `distribution.key` فلن
+> يمكن استعمال الشهادة بعد ذلك وستحتاج إنشاء واحدة جديدة.
+
 ### الخطوة 5: تحويل الملفات إلى Base64
 
 GitHub Secrets لا يقبل ملفات، فقط نص. حوّل الملفات إلى Base64:
