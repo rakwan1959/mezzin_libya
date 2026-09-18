@@ -1,0 +1,99 @@
+name: Web (GitHub Pages)
+
+# نشر نسخة الويب من التطبيق على GitHub Pages — رابط واحد يُفتح على الآيفون
+# ويُضاف إلى الشاشة الرئيسية كتطبيق، بلا حساب Apple ولا شهادات ولا تثبيت.
+#
+# الرابط الناتج: https://<اسم-الحساب>.github.io/<اسم-المستودع>/
+#
+# نقطتان تقنيتان:
+#   1. --base-href ضروري: Pages يخدم الموقع من مسار فرعي (/mezzin_libya/) لا من
+#      الجذر، وبدونه لا يجد التطبيق ملفاته فلا يُقلع.
+#   2. مزوّدو GitHub لا يجلبون مشروع iOS/أندرويد أصلاً، فالبناء هنا يستغرق
+#      دقائق قليلة وليس ربع ساعة.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+    paths:
+      - 'web/**'
+      - 'lib/**'
+      - 'assets/**'
+      - 'pubspec.yaml'
+      - '.github/workflows/deploy_web.yml'
+
+# صلاحية واحدة لنشر واحد في كل وقت — لا تشغيلين متزاحمين.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: Build web
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.41.9 # نفس نسخة التطوير المحلية
+          cache: true
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      # يُفعّل Pages تلقائياً إن لم يكن مفعّلاً (enablement) — بلا أي خطوة يدوية.
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Build web
+        run: |
+          set -o pipefail
+          flutter build web --release \
+            --base-href "/${{ github.event.repository.name }}/" 2>&1 | tee web_build.log
+
+      - name: Sanity check the build
+        run: |
+          set -o pipefail
+          test -f build/web/index.html || { echo "❌ لا يوجد index.html"; exit 1; }
+          grep -q "/${{ github.event.repository.name }}/" build/web/index.html \
+            || { echo "❌ الـ base-href غير مضبوط على المسار الفرعي"; exit 1; }
+          ls -la build/web | head -12
+          echo "✅ نسخة الويب جاهزة للنشر"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/web
+
+  deploy:
+    name: Deploy to Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: Report the link
+        run: |
+          echo "## ✅ نُشرت نسخة الويب" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "افتح الرابط على الآيفون في Safari ثم: **مشاركة ← إضافة إلى الشاشة الرئيسية**." >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "🔗 ${{ steps.deploy.outputs.page_url }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "الرابط: ${{ steps.deploy.outputs.page_url }}"
